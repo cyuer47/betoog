@@ -1,0 +1,20 @@
+{
+  "name": "school-digitalisering",
+  "version": "1.0.0",
+  "description": "Schoolwebsite over digitalisering op de middelbare school",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "school",
+    "digitalisering",
+    "website"
+  ],
+  "author": "Schoolproject",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

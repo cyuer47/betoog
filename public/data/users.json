@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Persoon 1",
+    "section": "Inleiding & Stelling",
+    "email": "persoon1@school.nl"
+  },
+  {
+    "id": 2,
+    "name": "Persoon 2",
+    "section": "Argumenten",
+    "email": "persoon2@school.nl"
+  },
+  {
+    "id": 3,
+    "name": "Persoon 3",
+    "section": "Conclusie & Weerlegging",
+    "email": "persoon3@school.nl"
+  }
+]

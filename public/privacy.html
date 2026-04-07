@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="nl" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Privacybeleid en cookiebeleid van DigitaalSchool. Lees hoe wij omgaan met jouw gegevens."
+    />
+    <title>Privacy & Cookies | DigitaalSchool</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>"
+    />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Ga naar inhoud</a>
+
+    <div
+      class="loading-screen"
+      id="loadingScreen"
+      role="status"
+      aria-label="Pagina laden"
+    >
+      <div class="loading-screen__logo">Digitaal<span>School</span></div>
+      <div class="loading-screen__spinner" aria-hidden="true"></div>
+      <div class="loading-screen__text">Laden…</div>
+    </div>
+
+    <header class="navbar" id="navbar" role="banner">
+      <div class="navbar__container">
+        <a
+          href="/"
+          class="navbar__logo"
+          aria-label="DigitaalSchool – Naar de homepage"
+        >
+          <div class="navbar__logo-icon" aria-hidden="true">
+            <span class="material-icons-round">computer</span>
+          </div>
+          <div class="navbar__logo-text">
+            DigitaalSchool
+            <span>Schoolproject 2024</span>
+          </div>
+        </a>
+        <nav class="navbar__nav" aria-label="Hoofdnavigatie">
+          <a href="/" class="navbar__nav-link">Home</a>
+          <a href="/about.html" class="navbar__nav-link">Over ons</a>
+          <a
+            href="/privacy.html"
+            class="navbar__nav-link navbar__nav-link--active"
+            aria-current="page"
+            >Privacy</a
+          >
+          <a href="/admin.html" class="navbar__nav-link">Admin</a>
+        </nav>
+        <div class="navbar__actions">
+          <button
+            class="navbar__theme-btn"
+            id="themeToggle"
+            aria-label="Wissel naar donkere modus"
+          >
+            <span class="material-icons-round" aria-hidden="true"
+              >dark_mode</span
+            >
+          </button>
+          <button
+            class="navbar__menu-btn"
+            id="menuToggle"
+            aria-label="Menu openen"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <span class="material-icons-round" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav
+      class="mobile-menu"
+      id="mobileMenu"
+      aria-label="Mobiele navigatie"
+      aria-hidden="true"
+    >
+      <div class="mobile-menu__nav">
+        <a href="/" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true">home</span>
+          Home</a
+        >
+        <a href="/about.html" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true">group</span>
+          Over ons</a
+        >
+        <a
+          href="/privacy.html"
+          class="mobile-menu__link mobile-menu__link--active"
+          aria-current="page"
+          ><span class="material-icons-round" aria-hidden="true"
+            >privacy_tip</span
+          >
+          Privacy</a
+        >
+        <a href="/admin.html" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true"
+            >admin_panel_settings</span
+          >
+          Admin</a
+        >
+      </div>
+    </nav>
+
+    <main id="main-content">
+      <section class="hero" aria-labelledby="privacy-title">
+        <div class="container">
+          <div class="hero__eyebrow" aria-hidden="true">
+            <span class="material-icons-round" style="font-size: 14px"
+              >privacy_tip</span
+            >
+            Juridisch
+          </div>
+          <h1 class="hero__title" id="privacy-title">
+            Privacy &amp; <em>Cookies</em>
+          </h1>
+          <p class="hero__subtitle">
+            Lees hieronder hoe wij omgaan met jouw gegevens en welke cookies wij
+            gebruiken. Laatst bijgewerkt: januari 2024.
+          </p>
+        </div>
+      </section>
+
+      <section class="betoog-section" aria-label="Privacybeleid inhoud">
+        <div class="container" style="max-width: 800px">
+          <!-- Privacybeleid -->
+          <div
+            class="card card--featured reveal"
+            style="margin-bottom: var(--space-6)"
+            role="article"
+            aria-labelledby="privacy-section-title"
+          >
+            <div class="card__icon" aria-hidden="true">
+              <span class="material-icons-round">security</span>
+            </div>
+            <div class="card__eyebrow">Sectie 1</div>
+            <h2 class="card__title" id="privacy-section-title">
+              Privacybeleid
+            </h2>
+            <p class="card__text">
+              DigitaalSchool is een schoolproject en verwerkt geen persoonlijke
+              gegevens van bezoekers. Er worden geen accounts aangemaakt, geen
+              e-mailadressen verzameld en geen persoonlijke informatie
+              opgeslagen.
+            </p>
+            <p class="card__text" style="margin-top: var(--space-4)">
+              De enige opgeslagen gegevens zijn:
+            </p>
+            <ul
+              style="
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-2);
+                margin-top: var(--space-3);
+              "
+            >
+              <li
+                style="
+                  display: flex;
+                  align-items: flex-start;
+                  gap: var(--space-2);
+                  font-size: var(--text-sm);
+                  color: var(--color-on-surface-muted);
+                "
+              >
+                <span
+                  class="material-icons-round"
+                  style="
+                    font-size: 16px;
+                    color: var(--color-accent);
+                    flex-shrink: 0;
+                    margin-top: 2px;
+                  "
+                  aria-hidden="true"
+                  >info</span
+                >
+                Cookie-voorkeur (lokaal in je browser opgeslagen via
+                <code>localStorage</code>)
+              </li>
+              <li
+                style="
+                  display: flex;
+                  align-items: flex-start;
+                  gap: var(--space-2);
+                  font-size: var(--text-sm);
+                  color: var(--color-on-surface-muted);
+                "
+              >
+                <span
+                  class="material-icons-round"
+                  style="
+                    font-size: 16px;
+                    color: var(--color-accent);
+                    flex-shrink: 0;
+                    margin-top: 2px;
+                  "
+                  aria-hidden="true"
+                  >info</span
+                >
+                Thema-voorkeur (licht/donker, lokaal opgeslagen)
+              </li>
+              <li
+                style="
+                  display: flex;
+                  align-items: flex-start;
+                  gap: var(--space-2);
+                  font-size: var(--text-sm);
+                  color: var(--color-on-surface-muted);
+                "
+              >
+                <span
+                  class="material-icons-round"
+                  style="
+                    font-size: 16px;
+                    color: var(--color-accent);
+                    flex-shrink: 0;
+                    margin-top: 2px;
+                  "
+                  aria-hidden="true"
+                  >info</span
+                >
+                Admin-sessie (tijdelijk, verdwijnt na sluiten browser)
+              </li>
+            </ul>
+          </div>
+
+          <!-- Cookiebeleid -->
+          <div
+            class="card card--elevated reveal"
+            id="cookies"
+            style="margin-bottom: var(--space-6)"
+            role="article"
+            aria-labelledby="cookies-section-title"
+          >
+            <div class="card__icon" aria-hidden="true">
+              <span class="material-icons-round">cookie</span>
+            </div>
+            <div class="card__eyebrow">Sectie 2</div>
+            <h2 class="card__title" id="cookies-section-title">Cookiebeleid</h2>
+            <p class="card__text" style="margin-bottom: var(--space-5)">
+              Wij gebruiken de volgende soorten cookies:
+            </p>
+
+            <!-- Tabel cookies -->
+            <div class="data-table__wrapper" aria-label="Overzicht van cookies">
+              <table class="data-table" role="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Cookie</th>
+                    <th scope="col">Doel</th>
+                    <th scope="col">Duur</th>
+                    <th scope="col">Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>cookie-consent</code></td>
+                    <td>Opslaan van jouw cookievoorkeur</td>
+                    <td>1 jaar</td>
+                    <td>
+                      <span class="badge badge--success">Essentieel</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>digitaalschool-theme</code></td>
+                    <td>Onthouden van licht/donker-modus</td>
+                    <td>Permanent</td>
+                    <td>
+                      <span class="badge badge--success">Functioneel</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>session</code></td>
+                    <td>Admin-sessie authenticatie</td>
+                    <td>24 uur</td>
+                    <td><span class="badge badge--primary">Sessie</span></td>
+                  </tr>
+                  <tr>
+                    <td>Google AdSense</td>
+                    <td>Advertenties tonen (indien geaccepteerd)</td>
+                    <td>13 maanden</td>
+                    <td><span class="badge badge--warning">Marketing</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Google AdSense -->
+          <div
+            class="card card--elevated reveal"
+            style="margin-bottom: var(--space-6)"
+            role="article"
+            aria-labelledby="adsense-section-title"
+          >
+            <div class="card__icon" aria-hidden="true">
+              <span class="material-icons-round">campaign</span>
+            </div>
+            <div class="card__eyebrow">Sectie 3</div>
+            <h2 class="card__title" id="adsense-section-title">
+              Google AdSense
+            </h2>
+            <p class="card__text">
+              Wij gebruiken Google AdSense om advertenties te tonen op deze
+              website. Google AdSense gebruikt cookies om relevante advertenties
+              te tonen op basis van jouw recente zoekopdrachten en
+              browsersessies.
+            </p>
+            <p class="card__text" style="margin-top: var(--space-4)">
+              Google AdSense-cookies worden alleen geplaatst als je cookies
+              accepteert via onze cookiebanner. Weiger je cookies, dan worden in
+              plaats daarvan neutrale demo-advertenties getoond.
+            </p>
+            <p class="card__text" style="margin-top: var(--space-4)">
+              Meer informatie over hoe Google omgaat met gegevens vind je op:
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Google privacybeleid (opent in nieuw tabblad)"
+              >
+                policies.google.com/privacy
+                <span
+                  class="material-icons-round"
+                  style="font-size: 14px; vertical-align: middle"
+                  aria-hidden="true"
+                  >open_in_new</span
+                >
+              </a>
+            </p>
+          </div>
+
+          <!-- Jouw rechten -->
+          <div
+            class="card card--elevated reveal"
+            style="margin-bottom: var(--space-6)"
+            role="article"
+            aria-labelledby="rights-section-title"
+          >
+            <div class="card__icon" aria-hidden="true">
+              <span class="material-icons-round">gavel</span>
+            </div>
+            <div class="card__eyebrow">Sectie 4</div>
+            <h2 class="card__title" id="rights-section-title">
+              Jouw rechten (AVG/GDPR)
+            </h2>
+            <p class="card__text">
+              Op basis van de Algemene Verordening Gegevensbescherming (AVG) heb
+              je de volgende rechten:
+            </p>
+            <ul
+              style="
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-3);
+                margin-top: var(--space-4);
+              "
+            >
+              <li
+                style="
+                  display: flex;
+                  align-items: flex-start;
+                  gap: var(--space-3);
+                "
+              >
+                <span
+                  class="material-icons-round"
+                  style="font-size: 18px; color: var(--color-primary)"
+                  aria-hidden="true"
+                  >check_circle</span
+                >
+                <div>
+                  <div
+                    style="
+                      font-weight: var(--weight-semibold);
+                      font-size: var(--text-sm);
+                    "
+                  >
+                    Recht op inzage
+                  </div>
+                  <div
+                    style="
+                      color: var(--color-on-surface-muted);
+                      font-size: var(--text-sm);
+                    "
+                  >
+                    Je kunt opvragen welke gegevens we over jou opslaan.
+                  </div>
+                </div>
+              </li>
+              <li
+                style="
+                  display: flex;
+                  align-items: flex-start;
+                  gap: var(--space-3);
+                "
+              >
+                <span
+                  class="material-icons-round"
+                  style="font-size: 18px; color: var(--color-primary)"
+                  aria-hidden="true"
+                  >check_circle</span
+                >
+                <div>
+                  <div
+                    style="
+                      font-weight: var(--weight-semibold);
+                      font-size: var(--text-sm);
+                    "
+                  >
+                    Recht op verwijdering
+                  </div>
+                  <div
+                    style="
+                      color: var(--color-on-surface-muted);
+                      font-size: var(--text-sm);
+                    "
+                  >
+                    Je kunt je browsercookies altijd zelf verwijderen via de
+                    browserinstellingen.
+                  </div>
+                </div>
+              </li>
+              <li
+                style="
+                  display: flex;
+                  align-items: flex-start;
+                  gap: var(--space-3);
+                "
+              >
+                <span
+                  class="material-icons-round"
+                  style="font-size: 18px; color: var(--color-primary)"
+                  aria-hidden="true"
+                  >check_circle</span
+                >
+                <div>
+                  <div
+                    style="
+                      font-weight: var(--weight-semibold);
+                      font-size: var(--text-sm);
+                    "
+                  >
+                    Recht op intrekking toestemming
+                  </div>
+                  <div
+                    style="
+                      color: var(--color-on-surface-muted);
+                      font-size: var(--text-sm);
+                    "
+                  >
+                    Je kunt jouw cookievoorkeur altijd wijzigen.
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Cookie voorkeur wijzigen -->
+          <div
+            class="card card--elevated reveal"
+            role="region"
+            aria-labelledby="cookie-pref-title"
+          >
+            <div class="card__icon" aria-hidden="true">
+              <span class="material-icons-round">tune</span>
+            </div>
+            <div class="card__eyebrow">Instellingen</div>
+            <h2 class="card__title" id="cookie-pref-title">
+              Cookievoorkeur wijzigen
+            </h2>
+            <p class="card__text" style="margin-bottom: var(--space-5)">
+              Je kunt op elk moment je cookievoorkeur aanpassen.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-3)">
+              <button
+                class="btn btn--primary"
+                onclick="resetAndAccept()"
+                aria-label="Accepteer alle cookies"
+              >
+                <span class="material-icons-round" aria-hidden="true"
+                  >check</span
+                >
+                Alle cookies accepteren
+              </button>
+              <button
+                class="btn btn--secondary"
+                onclick="resetAndDecline()"
+                aria-label="Weiger niet-essentiële cookies"
+              >
+                <span class="material-icons-round" aria-hidden="true"
+                  >close</span
+                >
+                Alleen essentieel
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <div class="footer__brand-name">DigitaalSchool</div>
+            <p class="footer__brand-desc">
+              Een schoolproject over digitalisering in het onderwijs.
+            </p>
+          </div>
+          <div>
+            <div class="footer__col-title">Navigatie</div>
+            <div class="footer__links">
+              <a href="/" class="footer__link">Home</a>
+              <a href="/about.html" class="footer__link">Over ons</a>
+              <a href="/privacy.html" class="footer__link">Privacy</a>
+              <a href="/admin.html" class="footer__link">Admin</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2024 DigitaalSchool – Schoolproject. Alle rechten voorbehouden.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <div
+      class="snackbar-container"
+      id="snackbarContainer"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <script src="/js/main.js"></script>
+    <script>
+      window.resetAndAccept = function () {
+        try {
+          localStorage.removeItem("cookie-consent");
+        } catch {}
+        acceptCookies();
+      };
+      window.resetAndDecline = function () {
+        try {
+          localStorage.removeItem("cookie-consent");
+        } catch {}
+        declineCookies();
+      };
+    </script>
+  </body>
+</html>

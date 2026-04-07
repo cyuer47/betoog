@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Argument 1: Betere voorbereiding op de arbeidsmarkt",
+    "content": "Leerlingen die digitale vaardigheden beheersen, zijn beter voorbereid op de moderne arbeidsmarkt. Bijna alle sectoren vragen tegenwoordig digitale basiskennis. Door digitalisering te verbeteren op school, zorgen we dat jongeren niet achterblijven.",
+    "section": "argumenten",
+    "author": "Persoon 2"
+  },
+  {
+    "id": 2,
+    "title": "Argument 2: Efficiënter en gepersonaliseerd leren",
+    "content": "Digitale tools maken adaptief leren mogelijk. Software past zich aan het niveau van de leerling aan, waardoor iedereen in eigen tempo leert. Dit verhoogt het leerrendement aanzienlijk ten opzichte van klassikaal onderwijs.",
+    "section": "argumenten",
+    "author": "Persoon 2"
+  },
+  {
+    "id": 3,
+    "title": "Argument 3: Duurzaamheid en toegankelijkheid",
+    "content": "Digitale leermiddelen zijn goedkoper op de lange termijn dan papieren boeken. Bovendien zijn e-books en online platforms altijd beschikbaar, ook vanuit huis. Dit vergroot de toegankelijkheid voor leerlingen met een beperking of ziekte.",
+    "section": "argumenten",
+    "author": "Persoon 2"
+  }
+]

@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="nl" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Over het schoolproject Digitalisering op de middelbare school. Maak kennis met het team."
+    />
+    <title>Over ons | DigitaalSchool</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👥</text></svg>"
+    />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Ga naar inhoud</a>
+
+    <!-- Loading Screen -->
+    <div
+      class="loading-screen"
+      id="loadingScreen"
+      role="status"
+      aria-label="Pagina laden"
+    >
+      <div class="loading-screen__logo">Digitaal<span>School</span></div>
+      <div class="loading-screen__spinner" aria-hidden="true"></div>
+      <div class="loading-screen__text">Laden…</div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar" id="navbar" role="banner">
+      <div class="navbar__container">
+        <a
+          href="/"
+          class="navbar__logo"
+          aria-label="DigitaalSchool – Naar de homepage"
+        >
+          <div class="navbar__logo-icon" aria-hidden="true">
+            <span class="material-icons-round">computer</span>
+          </div>
+          <div class="navbar__logo-text">
+            DigitaalSchool
+            <span>Schoolproject 2024</span>
+          </div>
+        </a>
+        <nav class="navbar__nav" aria-label="Hoofdnavigatie">
+          <a href="/" class="navbar__nav-link">Home</a>
+          <a
+            href="/about.html"
+            class="navbar__nav-link navbar__nav-link--active"
+            aria-current="page"
+            >Over ons</a
+          >
+          <a href="/privacy.html" class="navbar__nav-link">Privacy</a>
+          <a href="/admin.html" class="navbar__nav-link">Admin</a>
+        </nav>
+        <div class="navbar__actions">
+          <button
+            class="navbar__theme-btn"
+            id="themeToggle"
+            aria-label="Wissel naar donkere modus"
+          >
+            <span class="material-icons-round" aria-hidden="true"
+              >dark_mode</span
+            >
+          </button>
+          <button
+            class="navbar__menu-btn"
+            id="menuToggle"
+            aria-label="Menu openen"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <span class="material-icons-round" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile menu -->
+    <nav
+      class="mobile-menu"
+      id="mobileMenu"
+      aria-label="Mobiele navigatie"
+      aria-hidden="true"
+    >
+      <div class="mobile-menu__nav">
+        <a href="/" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true">home</span>
+          Home</a
+        >
+        <a
+          href="/about.html"
+          class="mobile-menu__link mobile-menu__link--active"
+          aria-current="page"
+          ><span class="material-icons-round" aria-hidden="true">group</span>
+          Over ons</a
+        >
+        <a href="/privacy.html" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true"
+            >privacy_tip</span
+          >
+          Privacy</a
+        >
+        <a href="/admin.html" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true"
+            >admin_panel_settings</span
+          >
+          Admin</a
+        >
+      </div>
+    </nav>
+
+    <main id="main-content">
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="about-title">
+        <div class="container">
+          <div class="hero__eyebrow" aria-hidden="true">
+            <span class="material-icons-round" style="font-size: 14px"
+              >group</span
+            >
+            Over het project
+          </div>
+          <h1 class="hero__title" id="about-title">Over <em>ons</em></h1>
+          <p class="hero__subtitle">
+            We zijn drie middelbare scholieren die samen een betoog hebben
+            geschreven over de noodzaak van betere digitalisering op school.
+            Lees hier meer over het project en ons team.
+          </p>
+        </div>
+      </section>
+
+      <!-- Project info -->
+      <section
+        class="betoog-section betoog-section--alt"
+        aria-labelledby="project-title"
+      >
+        <div class="container">
+          <div class="section-header reveal">
+            <div class="section-header__eyebrow">
+              <span
+                class="material-icons-round"
+                style="font-size: 14px"
+                aria-hidden="true"
+                >info</span
+              >
+              Het project
+            </div>
+            <h2 class="section-header__title" id="project-title">
+              Over dit schoolproject
+            </h2>
+          </div>
+
+          <div
+            class="grid grid--2"
+            style="align-items: start; gap: var(--space-8)"
+          >
+            <div class="card card--featured reveal">
+              <div class="card__icon" aria-hidden="true">
+                <span class="material-icons-round">school</span>
+              </div>
+              <div class="card__eyebrow">Projectinformatie</div>
+              <h3 class="card__title">Wat is dit project?</h3>
+              <p class="card__text">
+                Dit is een schoolproject voor het vak Nederlands. We hebben een
+                betoog geschreven over het onderwerp "Digitalisering op de
+                middelbare school moet verbeterd worden."
+              </p>
+              <p class="card__text" style="margin-top: var(--space-4)">
+                Het betoog bevat een inleiding, stelling, drie argumenten, een
+                tegenargument met weerlegging en een conclusie. Alle onderdelen
+                zijn verdeeld over drie teamleden.
+              </p>
+              <div class="card__footer">
+                <span class="badge badge--primary">Schooljaar 2023–2024</span>
+              </div>
+            </div>
+
+            <div
+              style="display: flex; flex-direction: column; gap: var(--space-5)"
+            >
+              <div class="card card--elevated reveal reveal--delay-1">
+                <div class="card__eyebrow">Techniek</div>
+                <h3 class="card__title">Hoe is de site gemaakt?</h3>
+                <p class="card__text">
+                  De website is volledig gebouwd met HTML, CSS en vanilla
+                  JavaScript op de frontend. De backend gebruikt Node.js zonder
+                  frameworks.
+                </p>
+                <div
+                  style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--space-2);
+                    margin-top: var(--space-4);
+                  "
+                >
+                  <span class="chip"
+                    ><span class="material-icons-round" aria-hidden="true"
+                      >code</span
+                    >HTML5</span
+                  >
+                  <span class="chip"
+                    ><span class="material-icons-round" aria-hidden="true"
+                      >palette</span
+                    >CSS3</span
+                  >
+                  <span class="chip"
+                    ><span class="material-icons-round" aria-hidden="true"
+                      >javascript</span
+                    >Vanilla JS</span
+                  >
+                  <span class="chip"
+                    ><span class="material-icons-round" aria-hidden="true"
+                      >dns</span
+                    >Node.js</span
+                  >
+                  <span class="chip"
+                    ><span class="material-icons-round" aria-hidden="true"
+                      >accessibility</span
+                    >WCAG AA</span
+                  >
+                </div>
+              </div>
+              <div class="card card--elevated reveal reveal--delay-2">
+                <div class="card__eyebrow">Tijdlijn</div>
+                <h3 class="card__title">Projectplanning</h3>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--space-3);
+                    margin-top: var(--space-3);
+                  "
+                >
+                  <div
+                    style="
+                      display: flex;
+                      gap: var(--space-3);
+                      align-items: flex-start;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        background: var(--color-primary);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 12px;
+                        font-weight: 700;
+                        flex-shrink: 0;
+                      "
+                      aria-hidden="true"
+                    >
+                      1
+                    </div>
+                    <div>
+                      <div
+                        style="
+                          font-weight: var(--weight-semibold);
+                          font-size: var(--text-sm);
+                        "
+                      >
+                        Week 1
+                      </div>
+                      <div
+                        style="
+                          color: var(--color-on-surface-muted);
+                          font-size: var(--text-xs);
+                        "
+                      >
+                        Onderzoek en opzet betoog
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      gap: var(--space-3);
+                      align-items: flex-start;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        background: var(--color-primary);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 12px;
+                        font-weight: 700;
+                        flex-shrink: 0;
+                      "
+                      aria-hidden="true"
+                    >
+                      2
+                    </div>
+                    <div>
+                      <div
+                        style="
+                          font-weight: var(--weight-semibold);
+                          font-size: var(--text-sm);
+                        "
+                      >
+                        Week 2
+                      </div>
+                      <div
+                        style="
+                          color: var(--color-on-surface-muted);
+                          font-size: var(--text-xs);
+                        "
+                      >
+                        Schrijven argumenten en conclusie
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      gap: var(--space-3);
+                      align-items: flex-start;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        background: var(--color-accent);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 12px;
+                        font-weight: 700;
+                        flex-shrink: 0;
+                      "
+                      aria-hidden="true"
+                    >
+                      3
+                    </div>
+                    <div>
+                      <div
+                        style="
+                          font-weight: var(--weight-semibold);
+                          font-size: var(--text-sm);
+                        "
+                      >
+                        Week 3
+                      </div>
+                      <div
+                        style="
+                          color: var(--color-on-surface-muted);
+                          font-size: var(--text-xs);
+                        "
+                      >
+                        Website bouwen en testen
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team -->
+      <section class="betoog-section" id="team" aria-labelledby="team-title">
+        <div class="container">
+          <div class="section-header section-header--center reveal">
+            <div class="section-header__eyebrow">
+              <span
+                class="material-icons-round"
+                style="font-size: 14px"
+                aria-hidden="true"
+                >group</span
+              >
+              Het team
+            </div>
+            <h2 class="section-header__title" id="team-title">Onze groep</h2>
+            <p class="section-header__text">
+              Dit project is gemaakt door drie leerlingen. Elk teamlid had een
+              eigen verantwoordelijkheid.
+            </p>
+          </div>
+
+          <div class="team-grid">
+            <div class="team-card reveal reveal--delay-1">
+              <div class="team-card__avatar" aria-label="Avatar van Persoon 1">
+                P1
+              </div>
+              <div class="team-card__name">Persoon 1</div>
+              <div class="team-card__role">Schrijver & Onderzoeker</div>
+              <div class="team-card__section">Inleiding & Stelling</div>
+            </div>
+            <div class="team-card reveal reveal--delay-2">
+              <div class="team-card__avatar" aria-label="Avatar van Persoon 2">
+                P2
+              </div>
+              <div class="team-card__name">Persoon 2</div>
+              <div class="team-card__role">Schrijver & Developer</div>
+              <div class="team-card__section">Argumenten</div>
+            </div>
+            <div class="team-card reveal reveal--delay-3">
+              <div class="team-card__avatar" aria-label="Avatar van Persoon 3">
+                P3
+              </div>
+              <div class="team-card__name">Persoon 3</div>
+              <div class="team-card__role">Schrijver & Designer</div>
+              <div class="team-card__section">Conclusie & Weerlegging</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section
+        class="betoog-section betoog-section--alt"
+        id="contact"
+        aria-labelledby="contact-title"
+      >
+        <div class="container">
+          <div class="section-header reveal">
+            <div class="section-header__eyebrow">
+              <span
+                class="material-icons-round"
+                style="font-size: 14px"
+                aria-hidden="true"
+                >email</span
+              >
+              Contact
+            </div>
+            <h2 class="section-header__title" id="contact-title">
+              Vragen over het project?
+            </h2>
+          </div>
+          <div class="card card--featured reveal" style="max-width: 600px">
+            <div class="card__icon" aria-hidden="true">
+              <span class="material-icons-round">email</span>
+            </div>
+            <p class="card__text">
+              Heb je vragen of feedback over dit schoolproject? Neem dan contact
+              op via de school. Dit is een schoolproject en wordt niet
+              commercieel beheerd.
+            </p>
+            <div style="margin-top: var(--space-5)">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: var(--space-2);
+                  font-size: var(--text-sm);
+                  color: var(--color-on-surface-muted);
+                  margin-bottom: var(--space-2);
+                "
+              >
+                <span
+                  class="material-icons-round"
+                  style="font-size: 18px; color: var(--color-accent)"
+                  aria-hidden="true"
+                  >school</span
+                >
+                Schoolproject Nederlands
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: var(--space-2);
+                  font-size: var(--text-sm);
+                  color: var(--color-on-surface-muted);
+                "
+              >
+                <span
+                  class="material-icons-round"
+                  style="font-size: 18px; color: var(--color-accent)"
+                  aria-hidden="true"
+                  >calendar_today</span
+                >
+                Schooljaar 2023–2024
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <div class="footer__brand-name">DigitaalSchool</div>
+            <p class="footer__brand-desc">
+              Een schoolproject over digitalisering in het onderwijs.
+            </p>
+          </div>
+          <div>
+            <div class="footer__col-title">Navigatie</div>
+            <div class="footer__links">
+              <a href="/" class="footer__link">Home</a>
+              <a href="/about.html" class="footer__link">Over ons</a>
+              <a href="/privacy.html" class="footer__link">Privacy</a>
+              <a href="/admin.html" class="footer__link">Admin</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer__col-title">Informatie</div>
+            <div class="footer__links">
+              <a href="/privacy.html" class="footer__link">Privacybeleid</a>
+              <a href="/privacy.html#cookies" class="footer__link"
+                >Cookiebeleid</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            © 2024 DigitaalSchool – Schoolproject. Alle rechten voorbehouden.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <div
+      class="snackbar-container"
+      id="snackbarContainer"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <script src="/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="nl" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Admin Paneel | DigitaalSchool</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>"
+    />
+    <style>
+      .admin-login-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-4);
+        background: linear-gradient(
+          135deg,
+          var(--color-secondary),
+          var(--color-primary)
+        );
+      }
+      .login-card {
+        background: var(--color-white);
+        border-radius: var(--radius-3xl);
+        padding: var(--space-10) var(--space-8);
+        width: 100%;
+        max-width: 420px;
+        box-shadow: var(--shadow-2xl);
+      }
+      [data-theme="dark"] .login-card {
+        background: var(--color-dark-surface);
+      }
+      .login-card__logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        margin-bottom: var(--space-8);
+      }
+      .login-card__logo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--color-primary);
+        border-radius: var(--radius-xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 22px;
+      }
+      .login-card__logo-text {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        color: var(--color-primary);
+        font-weight: var(--weight-semibold);
+      }
+      .admin-layout {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Ga naar inhoud</a>
+
+    <!-- Loading Screen -->
+    <div
+      class="loading-screen"
+      id="loadingScreen"
+      role="status"
+      aria-label="Pagina laden"
+    >
+      <div class="loading-screen__logo">Digitaal<span>School</span></div>
+      <div class="loading-screen__spinner" aria-hidden="true"></div>
+      <div class="loading-screen__text">Admin paneel laden…</div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar" id="navbar" role="banner">
+      <div class="navbar__container">
+        <a
+          href="/"
+          class="navbar__logo"
+          aria-label="DigitaalSchool – Naar de homepage"
+        >
+          <div class="navbar__logo-icon" aria-hidden="true">
+            <span class="material-icons-round">computer</span>
+          </div>
+          <div class="navbar__logo-text">
+            DigitaalSchool
+            <span>Admin Paneel</span>
+          </div>
+        </a>
+        <nav class="navbar__nav" aria-label="Hoofdnavigatie">
+          <a href="/" class="navbar__nav-link">Home</a>
+          <a href="/about.html" class="navbar__nav-link">Over ons</a>
+          <a href="/privacy.html" class="navbar__nav-link">Privacy</a>
+          <a
+            href="/admin.html"
+            class="navbar__nav-link navbar__nav-link--active"
+            aria-current="page"
+            >Admin</a
+          >
+        </nav>
+        <div class="navbar__actions">
+          <button
+            class="navbar__theme-btn"
+            id="themeToggle"
+            aria-label="Wissel naar donkere modus"
+          >
+            <span class="material-icons-round" aria-hidden="true"
+              >dark_mode</span
+            >
+          </button>
+          <button
+            class="navbar__menu-btn"
+            id="menuToggle"
+            aria-label="Menu openen"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <span class="material-icons-round" aria-hidden="true">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile menu -->
+    <nav
+      class="mobile-menu"
+      id="mobileMenu"
+      aria-label="Mobiele navigatie"
+      aria-hidden="true"
+    >
+      <div class="mobile-menu__nav">
+        <a href="/" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true">home</span>
+          Home</a
+        >
+        <a href="/about.html" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true">group</span>
+          Over ons</a
+        >
+        <a href="/privacy.html" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true"
+            >privacy_tip</span
+          >
+          Privacy</a
+        >
+        <a
+          href="/admin.html"
+          class="mobile-menu__link mobile-menu__link--active"
+          aria-current="page"
+          ><span class="material-icons-round" aria-hidden="true"
+            >admin_panel_settings</span
+          >
+          Admin</a
+        >
+      </div>
+    </nav>
+
+    <main id="main-content">
+      <!-- ══ LOGIN SCHERM ══ -->
+      <div
+        class="admin-login-page"
+        id="loginSection"
+        style="display: none"
+        role="main"
+        aria-labelledby="login-title"
+      >
+        <div class="login-card" role="region" aria-label="Inlogformulier">
+          <div class="login-card__logo">
+            <div class="login-card__logo-icon" aria-hidden="true">
+              <span class="material-icons-round">admin_panel_settings</span>
+            </div>
+            <div class="login-card__logo-text">Admin Paneel</div>
+          </div>
+
+          <h1
+            style="
+              font-family: var(--font-display);
+              font-size: var(--text-2xl);
+              color: var(--color-primary-dark);
+              margin-bottom: var(--space-2);
+            "
+            id="login-title"
+          >
+            Inloggen
+          </h1>
+          <p
+            style="
+              color: var(--color-on-surface-muted);
+              font-size: var(--text-sm);
+              margin-bottom: var(--space-6);
+            "
+          >
+            Voer je beheerdersinloggegevens in om door te gaan.
+          </p>
+
+          <form
+            onsubmit="handleLogin(event)"
+            novalidate
+            aria-label="Admin inlogformulier"
+          >
+            <div class="form-field">
+              <label class="form-label" for="loginUsername"
+                >Gebruikersnaam</label
+              >
+              <input
+                class="form-input"
+                id="loginUsername"
+                type="text"
+                name="username"
+                autocomplete="username"
+                placeholder="admin"
+                required
+                aria-required="true"
+                aria-describedby="loginError"
+              />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="loginPassword">Wachtwoord</label>
+              <div style="position: relative">
+                <input
+                  class="form-input"
+                  id="loginPassword"
+                  type="password"
+                  name="password"
+                  autocomplete="current-password"
+                  placeholder="••••••••"
+                  required
+                  aria-required="true"
+                  aria-describedby="loginError"
+                  style="padding-right: var(--space-10)"
+                />
+                <button
+                  type="button"
+                  onclick="togglePasswordVisibility()"
+                  style="
+                    position: absolute;
+                    right: var(--space-3);
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: var(--color-on-surface-muted);
+                    padding: 0;
+                  "
+                  aria-label="Wachtwoord tonen/verbergen"
+                >
+                  <span
+                    class="material-icons-round"
+                    id="passwordEye"
+                    aria-hidden="true"
+                    >visibility</span
+                  >
+                </button>
+              </div>
+            </div>
+
+            <div
+              id="loginError"
+              class="form-error"
+              role="alert"
+              aria-live="polite"
+              style="display: none; margin-bottom: var(--space-4)"
+            >
+              <span
+                class="material-icons-round"
+                style="font-size: 16px"
+                aria-hidden="true"
+                >error</span
+              >
+              <span></span>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn--primary"
+              style="
+                width: 100%;
+                justify-content: center;
+                padding: var(--space-4);
+              "
+              aria-label="Inloggen op het adminpaneel"
+            >
+              <span class="material-icons-round" aria-hidden="true">login</span>
+              <span class="btn__text">Inloggen</span>
+            </button>
+          </form>
+
+          <p
+            style="
+              margin-top: var(--space-5);
+              font-size: var(--text-xs);
+              color: var(--color-on-surface-muted);
+              text-align: center;
+            "
+          >
+            Standaard: <code>admin</code> / <code>geheim123</code>
+          </p>
+        </div>
+      </div>
+
+      <!-- ══ ADMIN DASHBOARD ══ -->
+      <div
+        class="admin-layout"
+        id="adminPanel"
+        style="display: none"
+        aria-label="Adminpaneel"
+      >
+        <!-- Sidebar -->
+        <aside
+          class="admin-sidebar"
+          role="navigation"
+          aria-label="Admin navigatie"
+        >
+          <div style="margin-bottom: var(--space-6)">
+            <div
+              style="
+                font-size: var(--text-xs);
+                font-weight: var(--weight-bold);
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: rgba(255, 255, 255, 0.4);
+                margin-bottom: var(--space-3);
+              "
+            >
+              Beheer
+            </div>
+            <nav class="admin-sidebar__nav">
+              <button
+                class="admin-sidebar__link"
+                data-section="dashboard"
+                onclick="navigateTo('dashboard')"
+                aria-label="Ga naar dashboard"
+              >
+                <span class="material-icons-round" aria-hidden="true"
+                  >dashboard</span
+                >
+                Dashboard
+              </button>
+              <button
+                class="admin-sidebar__link"
+                data-section="argumenten"
+                onclick="navigateTo('argumenten')"
+                aria-label="Ga naar argumentenbeheer"
+              >
+                <span class="material-icons-round" aria-hidden="true"
+                  >format_list_bulleted</span
+                >
+                Argumenten
+              </button>
+              <button
+                class="admin-sidebar__link"
+                data-section="gebruikers"
+                onclick="navigateTo('gebruikers')"
+                aria-label="Ga naar gebruikersbeheer"
+              >
+                <span class="material-icons-round" aria-hidden="true"
+                  >group</span
+                >
+                Gebruikers
+              </button>
+              <button
+                class="admin-sidebar__link"
+                data-section="instellingen"
+                onclick="navigateTo('instellingen')"
+                aria-label="Ga naar instellingen"
+              >
+                <span class="material-icons-round" aria-hidden="true"
+                  >settings</span
+                >
+                Instellingen
+              </button>
+            </nav>
+          </div>
+          <div style="margin-top: auto">
+            <button
+              class="admin-sidebar__link"
+              onclick="handleLogout()"
+              aria-label="Uitloggen"
+            >
+              <span class="material-icons-round" aria-hidden="true"
+                >logout</span
+              >
+              Uitloggen
+            </button>
+          </div>
+        </aside>
+
+        <!-- Main area -->
+        <div class="admin-main">
+          <!-- ── Dashboard sectie ── -->
+          <div class="admin-content-section" id="section-dashboard">
+            <div class="admin-header">
+              <h1 class="admin-header__title">Dashboard</h1>
+              <p class="admin-header__subtitle">
+                Welkom terug! Hier is een overzicht van de website.
+              </p>
+            </div>
+
+            <div class="grid grid--4" style="margin-bottom: var(--space-8)">
+              <div class="stat-card">
+                <div class="stat-card__icon" aria-hidden="true">
+                  <span class="material-icons-round">format_list_bulleted</span>
+                </div>
+                <div>
+                  <div
+                    class="stat-card__value"
+                    id="dashCountArgs"
+                    aria-label="Aantal argumenten"
+                  >
+                    3
+                  </div>
+                  <div class="stat-card__label">Argumenten</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card__icon" aria-hidden="true">
+                  <span class="material-icons-round">group</span>
+                </div>
+                <div>
+                  <div
+                    class="stat-card__value"
+                    id="dashCountUsers"
+                    aria-label="Aantal gebruikers"
+                  >
+                    3
+                  </div>
+                  <div class="stat-card__label">Gebruikers</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card__icon" aria-hidden="true">
+                  <span class="material-icons-round">article</span>
+                </div>
+                <div>
+                  <div class="stat-card__value">6</div>
+                  <div class="stat-card__label">Secties betoog</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card__icon" aria-hidden="true">
+                  <span class="material-icons-round">check_circle</span>
+                </div>
+                <div>
+                  <div
+                    class="stat-card__value"
+                    style="font-size: var(--text-xl)"
+                  >
+                    AA
+                  </div>
+                  <div class="stat-card__label">WCAG toegankelijk</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid--2" style="align-items: start">
+              <div class="card card--featured">
+                <div class="card__eyebrow">Snelle acties</div>
+                <h2 class="card__title">Wat wil je doen?</h2>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--space-3);
+                    margin-top: var(--space-4);
+                  "
+                >
+                  <button
+                    class="btn btn--primary"
+                    onclick="navigateTo('argumenten')"
+                    aria-label="Ga naar argumentenbeheer"
+                  >
+                    <span class="material-icons-round" aria-hidden="true"
+                      >edit</span
+                    >
+                    Argumenten bewerken
+                  </button>
+                  <button
+                    class="btn btn--secondary"
+                    onclick="navigateTo('gebruikers')"
+                    aria-label="Ga naar gebruikersbeheer"
+                  >
+                    <span class="material-icons-round" aria-hidden="true"
+                      >manage_accounts</span
+                    >
+                    Gebruikers beheren
+                  </button>
+                  <a
+                    href="/"
+                    class="btn btn--ghost"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Open de website in een nieuw tabblad"
+                  >
+                    <span class="material-icons-round" aria-hidden="true"
+                      >open_in_new</span
+                    >
+                    Website bekijken
+                  </a>
+                </div>
+              </div>
+              <div class="card card--elevated">
+                <div class="card__eyebrow">Sectieverdeling</div>
+                <h2 class="card__title">Wie doet wat?</h2>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--space-3);
+                    margin-top: var(--space-4);
+                  "
+                >
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      padding: var(--space-3);
+                      background: var(--color-primary-surface);
+                      border-radius: var(--radius-lg);
+                    "
+                  >
+                    <span
+                      style="
+                        font-size: var(--text-sm);
+                        font-weight: var(--weight-medium);
+                      "
+                      >Persoon 1</span
+                    >
+                    <span class="badge badge--primary"
+                      >Inleiding & Stelling</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      padding: var(--space-3);
+                      background: var(--color-primary-surface);
+                      border-radius: var(--radius-lg);
+                    "
+                  >
+                    <span
+                      style="
+                        font-size: var(--text-sm);
+                        font-weight: var(--weight-medium);
+                      "
+                      >Persoon 2</span
+                    >
+                    <span class="badge badge--primary">Argumenten</span>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      padding: var(--space-3);
+                      background: var(--color-primary-surface);
+                      border-radius: var(--radius-lg);
+                    "
+                  >
+                    <span
+                      style="
+                        font-size: var(--text-sm);
+                        font-weight: var(--weight-medium);
+                      "
+                      >Persoon 3</span
+                    >
+                    <span class="badge badge--primary"
+                      >Conclusie & Weerlegging</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Argumenten sectie ── -->
+          <div
+            class="admin-content-section"
+            id="section-argumenten"
+            style="display: none"
+          >
+            <div
+              class="admin-header"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                gap: var(--space-4);
+              "
+            >
+              <div>
+                <h1 class="admin-header__title">Argumenten beheren</h1>
+                <p class="admin-header__subtitle">
+                  Bewerk de argumenten die op de homepage worden getoond.
+                </p>
+              </div>
+              <div style="display: flex; gap: var(--space-3)">
+                <button
+                  class="btn btn--secondary"
+                  onclick="addArgument()"
+                  aria-label="Nieuw argument toevoegen"
+                >
+                  <span class="material-icons-round" aria-hidden="true"
+                    >add</span
+                  >
+                  Toevoegen
+                </button>
+                <button
+                  class="btn btn--primary"
+                  id="saveArgsBtn"
+                  onclick="saveArguments()"
+                  aria-label="Argumenten opslaan"
+                >
+                  <span class="material-icons-round" aria-hidden="true"
+                    >save</span
+                  >
+                  <span class="btn__text">Opslaan</span>
+                </button>
+              </div>
+            </div>
+            <div
+              id="argumentsList"
+              aria-live="polite"
+              aria-label="Lijst van argumenten"
+            >
+              <!-- Dynamisch gevuld door admin.js -->
+              <div
+                class="skeleton skeleton--card"
+                style="margin-bottom: var(--space-4)"
+                aria-hidden="true"
+              ></div>
+              <div
+                class="skeleton skeleton--card"
+                style="margin-bottom: var(--space-4)"
+                aria-hidden="true"
+              ></div>
+            </div>
+          </div>
+
+          <!-- ── Gebruikers sectie ── -->
+          <div
+            class="admin-content-section"
+            id="section-gebruikers"
+            style="display: none"
+          >
+            <div
+              class="admin-header"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                gap: var(--space-4);
+              "
+            >
+              <div>
+                <h1 class="admin-header__title">Gebruikers beheren</h1>
+                <p class="admin-header__subtitle">
+                  Wijs personen toe aan onderdelen van het betoog.
+                </p>
+              </div>
+              <button
+                class="btn btn--primary"
+                id="saveUsersBtn"
+                onclick="saveUsers()"
+                aria-label="Gebruikers opslaan"
+              >
+                <span class="material-icons-round" aria-hidden="true"
+                  >save</span
+                >
+                <span class="btn__text">Opslaan</span>
+              </button>
+            </div>
+            <div class="data-table__wrapper" aria-label="Gebruikerstabel">
+              <table
+                class="data-table"
+                role="table"
+                aria-label="Overzicht van gebruikers en secties"
+              >
+                <thead>
+                  <tr>
+                    <th scope="col">Naam</th>
+                    <th scope="col">E-mailadres</th>
+                    <th scope="col">Sectie toewijzen</th>
+                    <th scope="col">Huidige sectie</th>
+                  </tr>
+                </thead>
+                <tbody id="usersTableBody" aria-live="polite">
+                  <!-- Dynamisch gevuld door admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ── Instellingen sectie ── -->
+          <div
+            class="admin-content-section"
+            id="section-instellingen"
+            style="display: none"
+          >
+            <div class="admin-header">
+              <h1 class="admin-header__title">Instellingen</h1>
+              <p class="admin-header__subtitle">
+                Beheer de website-instellingen.
+              </p>
+            </div>
+            <div class="grid grid--2" style="align-items: start">
+              <div class="card card--elevated">
+                <div class="card__icon" aria-hidden="true">
+                  <span class="material-icons-round">account_circle</span>
+                </div>
+                <div class="card__eyebrow">Account</div>
+                <h2 class="card__title">Inloggegevens</h2>
+                <p class="card__text" style="margin-bottom: var(--space-4)">
+                  De inloggegevens worden beheerd via het
+                  <code>.env</code> bestand op de server. Wijzig daar
+                  <code>ADMIN_USER</code> en <code>ADMIN_PASS</code>.
+                </p>
+                <div
+                  style="
+                    background: var(--color-surface-2);
+                    border-radius: var(--radius-lg);
+                    padding: var(--space-4);
+                    font-family: var(--font-mono);
+                    font-size: var(--text-sm);
+                  "
+                >
+                  <div style="color: var(--color-on-surface-muted)">
+                    ADMIN_USER=admin
+                  </div>
+                  <div style="color: var(--color-on-surface-muted)">
+                    ADMIN_PASS=geheim123
+                  </div>
+                </div>
+              </div>
+              <div class="card card--elevated">
+                <div class="card__icon" aria-hidden="true">
+                  <span class="material-icons-round">storage</span>
+                </div>
+                <div class="card__eyebrow">Database</div>
+                <h2 class="card__title">JSON bestanden</h2>
+                <p class="card__text" style="margin-bottom: var(--space-4)">
+                  Data wordt opgeslagen in JSON-bestanden in de
+                  <code>public/data/</code> map.
+                </p>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--space-2);
+                  "
+                >
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      font-size: var(--text-sm);
+                    "
+                  >
+                    <span style="color: var(--color-on-surface-muted)"
+                      >arguments.json</span
+                    >
+                    <span class="badge badge--success">Actief</span>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      font-size: var(--text-sm);
+                    "
+                  >
+                    <span style="color: var(--color-on-surface-muted)"
+                      >users.json</span
+                    >
+                    <span class="badge badge--success">Actief</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card--elevated" style="margin-top: var(--space-6)">
+              <div
+                class="card__icon"
+                style="
+                  background: var(--color-error-light);
+                  color: var(--color-error);
+                "
+                aria-hidden="true"
+              >
+                <span class="material-icons-round">logout</span>
+              </div>
+              <div class="card__eyebrow">Sessie</div>
+              <h2 class="card__title">Uitloggen</h2>
+              <p class="card__text" style="margin-bottom: var(--space-5)">
+                Sluit je sessie af en keer terug naar het inlogscherm.
+              </p>
+              <button
+                class="btn btn--secondary"
+                onclick="handleLogout()"
+                style="
+                  color: var(--color-error);
+                  border-color: var(--color-error);
+                "
+                aria-label="Uitloggen van het adminpaneel"
+              >
+                <span class="material-icons-round" aria-hidden="true"
+                  >logout</span
+                >
+                Uitloggen
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- /admin-main -->
+      </div>
+      <!-- /adminPanel -->
+    </main>
+
+    <!-- Snackbar container -->
+    <div
+      class="snackbar-container"
+      id="snackbarContainer"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/admin.js"></script>
+    <script>
+      // Wachtwoord tonen/verbergen
+      window.togglePasswordVisibility = function () {
+        const input = document.getElementById("loginPassword");
+        const eye = document.getElementById("passwordEye");
+        if (!input || !eye) return;
+        if (input.type === "password") {
+          input.type = "text";
+          eye.textContent = "visibility_off";
+        } else {
+          input.type = "password";
+          eye.textContent = "visibility";
+        }
+      };
+    </script>
+  </body>
+</html>
