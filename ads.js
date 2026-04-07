@@ -1,4 +1,4 @@
-// ads.js – Google AdSense integratie met fallback demo
+// ads.js - Google AdSense integratie met fallback demo
 // ======================================================
 
 "use strict";
@@ -74,7 +74,7 @@
     // Controleer of het een echt ID is
     if (pubId.includes("XXXX")) {
       console.info(
-        "[Ads] Geen geldig AdSense publisher ID – demo advertenties worden getoond.",
+        "[Ads] Geen geldig AdSense publisher ID - demo advertenties worden getoond.",
       );
       showFallback();
       return;
@@ -86,7 +86,7 @@
       pushAds();
     } catch (err) {
       console.warn(
-        "[Ads] AdSense kon niet worden geladen – demo weergegeven.",
+        "[Ads] AdSense kon niet worden geladen - demo weergegeven.",
         err.message,
       );
       showFallback();

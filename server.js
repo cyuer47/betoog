@@ -1,4 +1,4 @@
-// server.js – Node.js HTTP server zonder Express
+// server.js - Node.js HTTP server zonder Express
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
@@ -17,7 +17,7 @@ function loadEnv() {
       }
     });
   } catch {
-    console.warn("⚠️  Geen .env bestand gevonden – gebruik standaardwaarden.");
+    console.warn("⚠️  Geen .env bestand gevonden - gebruik standaardwaarden.");
   }
 }
 loadEnv();
@@ -80,7 +80,7 @@ function serve404(res) {
   const p = path.join(PUBLIC_DIR, "404.html");
   fs.readFile(p, (err, data) => {
     res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-    res.end(err ? "<h1>404 – Niet gevonden</h1>" : data);
+    res.end(err ? "<h1>404 - Niet gevonden</h1>" : data);
   });
 }
 

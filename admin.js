@@ -1,4 +1,4 @@
-// admin.js – Admin paneel logica
+// admin.js - Admin paneel logica
 // ================================
 
 "use strict";
@@ -81,7 +81,7 @@ window.handleLogin = async function (e) {
       passwordEl.value = "";
     }
   } catch {
-    showFormError(errorEl, "Verbindingsfout – probeer opnieuw.");
+    showFormError(errorEl, "Verbindingsfout - probeer opnieuw.");
   } finally {
     setButtonLoading(btn, false);
   }
@@ -259,7 +259,7 @@ window.saveArguments = async function () {
     if (res.ok) {
       showSnackbar("Argumenten opgeslagen!", "success");
     } else if (res.status === 401) {
-      showSnackbar("Sessie verlopen – log opnieuw in.", "error");
+      showSnackbar("Sessie verlopen - log opnieuw in.", "error");
       showLogin();
     } else {
       showSnackbar("Opslaan mislukt. Probeer opnieuw.", "error");
@@ -340,7 +340,7 @@ window.saveUsers = async function () {
     if (res.ok) {
       showSnackbar("Gebruikers opgeslagen!", "success");
     } else if (res.status === 401) {
-      showSnackbar("Sessie verlopen – log opnieuw in.", "error");
+      showSnackbar("Sessie verlopen - log opnieuw in.", "error");
       showLogin();
     } else {
       showSnackbar("Opslaan mislukt. Probeer opnieuw.", "error");

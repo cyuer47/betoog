@@ -1,4 +1,4 @@
-// main.js – Centrale JavaScript logica
+// main.js - Centrale JavaScript logica
 // ======================================
 
 "use strict";
@@ -288,7 +288,7 @@ function fallbackCopy(text) {
     document.execCommand("copy");
     showSnackbar("Link gekopieerd!", "success");
   } catch {
-    showSnackbar("Kopiëren mislukt – kopieer de URL handmatig.", "error");
+    showSnackbar("Kopiëren mislukt - kopieer de URL handmatig.", "error");
   }
   ta.remove();
   hideModal();
