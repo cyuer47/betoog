@@ -368,6 +368,38 @@ function handleGetArguments(req, res) {
   });
 }
 
+// PUT /api/me/password
+async function handleChangePassword(req, res) {
+  if (!isAuthenticated(req))
+    return jsonResponse(res, 401, { error: "Niet ingelogd" });
+  const sess = getSession(req);
+  const db = await getDb();
+  const { oldPassword, newPassword } = await parseBody(req);
+
+  if (!oldPassword || !newPassword)
+    return jsonResponse(res, 400, {
+      error: "Oud en nieuw wachtwoord zijn verplicht.",
+    });
+
+  const user = get(db, "SELECT * FROM users WHERE id = ?", [sess.userId]);
+  if (!user)
+    return jsonResponse(res, 404, { error: "Gebruiker niet gevonden" });
+
+  if (user.password !== oldPassword)
+    return jsonResponse(res, 401, {
+      error: "Oud wachtwoord is onjuist.",
+    });
+
+  run(db, "UPDATE users SET password = ? WHERE id = ?", [
+    newPassword,
+    sess.userId,
+  ]);
+  jsonResponse(res, 200, {
+    success: true,
+    message: "Wachtwoord succesvol gewijzigd.",
+  });
+}
+
 // ── Router ───────────────────────────────────────────────────────
 async function router(req, res) {
   const parsed = url.parse(req.url, true);
