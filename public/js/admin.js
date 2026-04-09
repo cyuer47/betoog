@@ -1,12 +1,10 @@
-// admin.js - Admin paneel logica
-// ================================
-
+// admin.js - Admin + teamlid paneel
 "use strict";
 
-// ── Staat ────────────────────────────────────────────────────────
 let currentSection = "dashboard";
-let arguments_data = [];
-let users_data = [];
+let sectionsData = [];
+let usersData = [];
+let currentUser = null;
 
 // ── Init ──────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
@@ -18,7 +16,8 @@ async function checkSession() {
     const res = await fetch("/api/session");
     const data = await res.json();
     if (data.authenticated) {
-      showDashboard();
+      currentUser = data.user;
+      await showPanel();
     } else {
       showLogin();
     }
@@ -27,58 +26,64 @@ async function checkSession() {
   }
 }
 
-// ── Login ─────────────────────────────────────────────────────────
+// ── Login / Logout ────────────────────────────────────────────────
 function showLogin() {
-  const loginSection = document.getElementById("loginSection");
-  const adminPanel = document.getElementById("adminPanel");
-  if (loginSection) loginSection.style.display = "flex";
-  if (adminPanel) adminPanel.style.display = "none";
+  document.getElementById("loginSection").style.display = "flex";
+  document.getElementById("adminPanel").style.display = "none";
 }
 
-function showDashboard() {
-  const loginSection = document.getElementById("loginSection");
-  const adminPanel = document.getElementById("adminPanel");
-  if (loginSection) loginSection.style.display = "none";
-  if (adminPanel) adminPanel.style.display = "grid";
-  loadAllData();
+async function showPanel() {
+  document.getElementById("loginSection").style.display = "none";
+  document.getElementById("adminPanel").style.display = "grid";
+  updateSidebarForRole();
+  await loadAllData();
   navigateTo("dashboard");
 }
 
-// Exporteer naar window voor inline handlers
+function updateSidebarForRole() {
+  // Show/hide admin-only nav items
+  document.querySelectorAll("[data-admin-only]").forEach((el) => {
+    el.style.display = currentUser.role === "admin" ? "" : "none";
+  });
+  // Update welcome name
+  const nameEl = document.getElementById("sidebarUserName");
+  if (nameEl) nameEl.textContent = currentUser.name;
+  const roleEl = document.getElementById("sidebarUserRole");
+  if (roleEl)
+    roleEl.textContent =
+      currentUser.role === "admin"
+        ? "Beheerder"
+        : "Teamlid · " + currentUser.section;
+}
+
 window.handleLogin = async function (e) {
   e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('button[type="submit"]');
-  const usernameEl = document.getElementById("loginUsername");
-  const passwordEl = document.getElementById("loginPassword");
+  const btn = e.target.querySelector('button[type="submit"]');
+  const username = document.getElementById("loginUsername")?.value.trim();
+  const password = document.getElementById("loginPassword")?.value.trim();
   const errorEl = document.getElementById("loginError");
-
-  if (!usernameEl || !passwordEl) return;
-
-  const username = usernameEl.value.trim();
-  const password = passwordEl.value.trim();
 
   if (!username || !password) {
     showFormError(errorEl, "Vul alle velden in.");
     return;
   }
-
   setButtonLoading(btn, true);
   clearFormError(errorEl);
 
   try {
-    const res = await fetch("/admin/login", {
+    const res = await fetch("/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
     const data = await res.json();
     if (data.success) {
-      showDashboard();
-      showSnackbar("Welkom terug, " + username + "!", "success");
+      currentUser = data.user;
+      await showPanel();
+      showSnackbar("Welkom, " + data.user.name + "!", "success");
     } else {
       showFormError(errorEl, data.message || "Onjuiste inloggegevens.");
-      passwordEl.value = "";
+      document.getElementById("loginPassword").value = "";
     }
   } catch {
     showFormError(errorEl, "Verbindingsfout - probeer opnieuw.");
@@ -88,9 +93,8 @@ window.handleLogin = async function (e) {
 };
 
 window.handleLogout = async function () {
-  try {
-    await fetch("/admin/logout", { method: "POST" });
-  } catch {}
+  await fetch("/api/logout", { method: "POST" });
+  currentUser = null;
   showLogin();
   showSnackbar("Je bent uitgelogd.", "default");
 };
@@ -98,284 +102,441 @@ window.handleLogout = async function () {
 // ── Navigatie ─────────────────────────────────────────────────────
 window.navigateTo = function (section) {
   currentSection = section;
-
-  // Verberg alle secties
-  document.querySelectorAll(".admin-content-section").forEach((el) => {
-    el.style.display = "none";
-  });
-  // Deactiveer alle links
+  document
+    .querySelectorAll(".admin-content-section")
+    .forEach((el) => (el.style.display = "none"));
   document.querySelectorAll(".admin-sidebar__link").forEach((link) => {
     link.classList.remove("admin-sidebar__link--active");
     link.removeAttribute("aria-current");
   });
-
-  // Toon gekozen sectie
   const target = document.getElementById("section-" + section);
   if (target) target.style.display = "block";
-
-  // Markeer actieve link
   const activeLink = document.querySelector(`[data-section="${section}"]`);
   if (activeLink) {
     activeLink.classList.add("admin-sidebar__link--active");
     activeLink.setAttribute("aria-current", "page");
   }
 
-  // Laad sectie-specifieke data
-  if (section === "argumenten") renderArguments();
+  if (section === "betoog") renderBetoog();
   if (section === "gebruikers") renderUsers();
+  if (section === "wachtwoord") renderPasswordForm();
 };
 
 // ── Data laden ────────────────────────────────────────────────────
 async function loadAllData() {
-  await Promise.all([fetchArguments(), fetchUsers()]);
+  await Promise.all([
+    fetchSections(),
+    currentUser.role === "admin" ? fetchUsers() : Promise.resolve(),
+  ]);
   renderDashboard();
 }
 
-async function fetchArguments() {
+async function fetchSections() {
   try {
-    const res = await fetch("/api/arguments");
-    arguments_data = await res.json();
+    const res = await fetch("/api/sections");
+    sectionsData = await res.json();
   } catch {
-    arguments_data = [];
+    sectionsData = [];
   }
 }
 
 async function fetchUsers() {
   try {
     const res = await fetch("/api/users");
-    users_data = await res.json();
+    usersData = await res.json();
   } catch {
-    users_data = [];
+    usersData = [];
   }
 }
 
 // ── Dashboard ─────────────────────────────────────────────────────
 function renderDashboard() {
-  const countArgs = document.getElementById("dashCountArgs");
-  const countUsers = document.getElementById("dashCountUsers");
-  if (countArgs) countArgs.textContent = arguments_data.length;
-  if (countUsers) countUsers.textContent = users_data.length;
-}
+  const el = document.getElementById("dashCountSections");
+  if (el) el.textContent = sectionsData.length;
+  const el2 = document.getElementById("dashCountUsers");
+  if (el2) el2.textContent = usersData.length || "—";
 
-// ── Argumenten beheer ─────────────────────────────────────────────
-function renderArguments() {
-  const container = document.getElementById("argumentsList");
-  if (!container) return;
+  // Show sections user can edit
+  const myList = document.getElementById("mySectionsList");
+  if (!myList) return;
+  myList.innerHTML = "";
 
-  container.innerHTML = "";
-
-  if (!arguments_data.length) {
-    container.innerHTML = `<p style="color:var(--color-on-surface-muted); font-size:var(--text-sm);">Geen argumenten gevonden.</p>`;
+  const canEdit = sectionsData.filter((s) => canEditSection(s.id));
+  if (!canEdit.length) {
+    myList.innerHTML = `<p style="color:var(--color-on-surface-muted);font-size:var(--text-sm)">Je hebt geen bewerkbare secties.</p>`;
     return;
   }
+  canEdit.forEach((s) => {
+    const div = document.createElement("div");
+    div.style.cssText =
+      "display:flex;justify-content:space-between;align-items:center;padding:var(--space-3);background:var(--color-primary-surface);border-radius:var(--radius-lg);";
+    div.innerHTML = `
+      <span style="font-size:var(--text-sm);font-weight:var(--weight-medium)">${escapeHtml(s.label)}: ${escapeHtml(s.title)}</span>
+      <button class="btn btn--sm btn--primary" onclick="navigateTo('betoog');setTimeout(()=>openSectionEditor('${s.id}'),100)" aria-label="Bewerk ${escapeHtml(s.label)}">
+        <span class="material-icons-round" aria-hidden="true">edit</span> Bewerk
+      </button>`;
+    myList.appendChild(div);
+  });
+}
 
-  arguments_data.forEach((arg, index) => {
+function canEditSection(sectionId) {
+  if (currentUser.role === "admin") return true;
+  const map = {
+    inleiding: "Inleiding & Stelling",
+    stelling: "Inleiding & Stelling",
+    argument1: "Argumenten",
+    argument2: "Argumenten",
+    argument3: "Argumenten",
+    tegenargument: "Conclusie & Weerlegging",
+    weerlegging: "Conclusie & Weerlegging",
+    conclusie: "Conclusie & Weerlegging",
+  };
+  return map[sectionId] === currentUser.section;
+}
+
+// ── Betoog bewerken ───────────────────────────────────────────────
+function renderBetoog() {
+  const container = document.getElementById("betoogSectionsList");
+  if (!container) return;
+  container.innerHTML = "";
+
+  sectionsData.forEach((s) => {
+    const editable = canEditSection(s.id);
     const card = document.createElement("div");
     card.className = "card card--elevated";
+    card.id = `betoog-card-${s.id}`;
     card.style.marginBottom = "var(--space-4)";
     card.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:var(--space-4); flex-wrap:wrap;">
-        <div style="flex:1; min-width:0;">
-          <div class="card__eyebrow">Argument ${index + 1}</div>
-          <div class="form-field" style="margin-bottom:var(--space-3);">
-            <label class="form-label" for="arg-title-${index}">Titel</label>
-            <input class="form-input"
-                   id="arg-title-${index}"
-                   type="text"
-                   value="${escapeHtml(arg.title || "")}"
-                   onchange="updateArgField(${index}, 'title', this.value)"
-                   aria-label="Titel van argument ${index + 1}" />
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:var(--space-4);flex-wrap:wrap;">
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-3);">
+            <span class="badge badge--primary">${escapeHtml(s.label)}</span>
+            ${s.author_name ? `<span style="font-size:var(--text-xs);color:var(--color-on-surface-muted)">door ${escapeHtml(s.author_name)}</span>` : ""}
+            ${!editable ? `<span class="badge badge--warning">Alleen lezen</span>` : ""}
           </div>
-          <div class="form-field" style="margin-bottom:var(--space-3);">
-            <label class="form-label" for="arg-content-${index}">Inhoud</label>
-            <textarea class="form-input form-textarea"
-                      id="arg-content-${index}"
-                      rows="4"
-                      onchange="updateArgField(${index}, 'content', this.value)"
-                      aria-label="Inhoud van argument ${index + 1}">${escapeHtml(arg.content || "")}</textarea>
+          <div id="view-${s.id}">
+            <h3 style="font-family:var(--font-display);font-size:var(--text-lg);color:var(--color-primary-dark);margin-bottom:var(--space-2)">${escapeHtml(s.title)}</h3>
+            <div style="font-size:var(--text-sm);color:var(--color-on-surface-muted);line-height:1.7;white-space:pre-line">${escapeHtml(s.content.substring(0, 200))}${s.content.length > 200 ? "…" : ""}</div>
           </div>
-          <div class="form-field" style="margin-bottom:0;">
-            <label class="form-label" for="arg-author-${index}">Auteur</label>
-            <input class="form-input"
-                   id="arg-author-${index}"
-                   type="text"
-                   value="${escapeHtml(arg.author || "")}"
-                   onchange="updateArgField(${index}, 'author', this.value)"
-                   aria-label="Auteur van argument ${index + 1}" />
+          <div id="edit-${s.id}" style="display:none">
+            <div class="form-field">
+              <label class="form-label" for="title-${s.id}">Titel</label>
+              <input class="form-input" id="title-${s.id}" type="text" value="${escapeHtml(s.title)}" />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="content-${s.id}">Inhoud (gebruik lege regel voor nieuwe alinea)</label>
+              <textarea class="form-input form-textarea" id="content-${s.id}" rows="8">${escapeHtml(s.content)}</textarea>
+            </div>
           </div>
         </div>
-        <div style="display:flex; flex-direction:column; gap:var(--space-2); flex-shrink:0;">
-          <button class="btn btn--sm btn--ghost"
-                  onclick="deleteArgument(${index})"
-                  aria-label="Argument ${index + 1} verwijderen"
-                  style="color:var(--color-error);">
-            <span class="material-icons-round" aria-hidden="true">delete</span>
-          </button>
+        <div style="display:flex;flex-direction:column;gap:var(--space-2);flex-shrink:0;" id="actions-${s.id}">
+          ${
+            editable
+              ? `
+            <button class="btn btn--sm btn--primary" id="editBtn-${s.id}" onclick="openSectionEditor('${s.id}')" aria-label="Bewerk ${escapeHtml(s.label)}">
+              <span class="material-icons-round" aria-hidden="true">edit</span>
+            </button>`
+              : ""
+          }
         </div>
-      </div>
-    `;
+      </div>`;
     container.appendChild(card);
   });
 }
 
-window.updateArgField = function (index, field, value) {
-  if (arguments_data[index]) {
-    arguments_data[index][field] = value;
+window.openSectionEditor = function (id) {
+  const viewEl = document.getElementById("view-" + id);
+  const editEl = document.getElementById("edit-" + id);
+  const actionsEl = document.getElementById("actions-" + id);
+  if (!viewEl || !editEl) return;
+  viewEl.style.display = "none";
+  editEl.style.display = "block";
+  actionsEl.innerHTML = `
+    <button class="btn btn--sm btn--primary" onclick="saveSectionEditor('${id}')" aria-label="Opslaan">
+      <span class="material-icons-round" aria-hidden="true">save</span>
+    </button>
+    <button class="btn btn--sm btn--ghost" onclick="cancelSectionEditor('${id}')" aria-label="Annuleren">
+      <span class="material-icons-round" aria-hidden="true">close</span>
+    </button>`;
+};
+
+window.cancelSectionEditor = function (id) {
+  const s = sectionsData.find((x) => x.id === id);
+  if (!s) return;
+  document.getElementById("title-" + id).value = s.title;
+  document.getElementById("content-" + id).value = s.content;
+  const viewEl = document.getElementById("view-" + id);
+  const editEl = document.getElementById("edit-" + id);
+  const actionsEl = document.getElementById("actions-" + id);
+  if (viewEl) viewEl.style.display = "block";
+  if (editEl) editEl.style.display = "none";
+  if (actionsEl)
+    actionsEl.innerHTML = `<button class="btn btn--sm btn--primary" id="editBtn-${id}" onclick="openSectionEditor('${id}')" aria-label="Bewerk">
+    <span class="material-icons-round" aria-hidden="true">edit</span></button>`;
+};
+
+window.saveSectionEditor = async function (id) {
+  const title = document.getElementById("title-" + id)?.value.trim();
+  const content = document.getElementById("content-" + id)?.value.trim();
+  if (!title || !content) {
+    showSnackbar("Titel en inhoud zijn verplicht.", "error");
+    return;
   }
-};
 
-window.addArgument = function () {
-  const newId =
-    arguments_data.length > 0
-      ? Math.max(...arguments_data.map((a) => a.id || 0)) + 1
-      : 1;
-  arguments_data.push({
-    id: newId,
-    title: "Nieuw argument " + newId,
-    content: "Voer hier de inhoud van het argument in.",
-    section: "argumenten",
-    author: "Persoon 2",
-  });
-  renderArguments();
-};
-
-window.deleteArgument = function (index) {
-  if (confirm(`Weet je zeker dat je argument ${index + 1} wilt verwijderen?`)) {
-    arguments_data.splice(index, 1);
-    renderArguments();
-    showSnackbar("Argument verwijderd.", "warning");
-  }
-};
-
-window.saveArguments = async function () {
-  const btn = document.getElementById("saveArgsBtn");
-  setButtonLoading(btn, true);
   try {
-    const res = await fetch("/api/arguments", {
-      method: "POST",
+    const res = await fetch(`/api/sections/${id}`, {
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(arguments_data),
+      body: JSON.stringify({ title, content }),
     });
+    const data = await res.json();
     if (res.ok) {
-      showSnackbar("Argumenten opgeslagen!", "success");
-    } else if (res.status === 401) {
-      showSnackbar("Sessie verlopen - log opnieuw in.", "error");
-      showLogin();
+      // Update local data
+      const s = sectionsData.find((x) => x.id === id);
+      if (s) {
+        s.title = title;
+        s.content = content;
+      }
+      cancelSectionEditor(id);
+      // Update view
+      const viewEl = document.getElementById("view-" + id);
+      if (viewEl)
+        viewEl.innerHTML = `
+        <h3 style="font-family:var(--font-display);font-size:var(--text-lg);color:var(--color-primary-dark);margin-bottom:var(--space-2)">${escapeHtml(title)}</h3>
+        <div style="font-size:var(--text-sm);color:var(--color-on-surface-muted);line-height:1.7;white-space:pre-line">${escapeHtml(content.substring(0, 200))}${content.length > 200 ? "…" : ""}</div>`;
+      showSnackbar("Sectie opgeslagen!", "success");
     } else {
-      showSnackbar("Opslaan mislukt. Probeer opnieuw.", "error");
+      showSnackbar(data.error || "Opslaan mislukt.", "error");
+      if (res.status === 401) {
+        showLogin();
+      }
     }
   } catch {
     showSnackbar("Verbindingsfout bij opslaan.", "error");
-  } finally {
-    setButtonLoading(btn, false);
   }
 };
 
-// ── Gebruikers beheer ─────────────────────────────────────────────
+// ── Gebruikers beheer (admin only) ────────────────────────────────
 function renderUsers() {
   const tbody = document.getElementById("usersTableBody");
   if (!tbody) return;
   tbody.innerHTML = "";
 
-  users_data.forEach((user, index) => {
+  usersData.forEach((user) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>
-        <div style="display:flex; align-items:center; gap:var(--space-3);">
-          <div class="card__author-avatar" style="width:32px;height:32px;font-size:14px;" aria-hidden="true">
-            P${index + 1}
+        <div style="display:flex;align-items:center;gap:var(--space-3);">
+          <div class="card__author-avatar" aria-hidden="true">${escapeHtml(user.name.substring(0, 2).toUpperCase())}</div>
+          <div>
+            <div style="font-weight:var(--weight-medium);font-size:var(--text-sm)">${escapeHtml(user.name)}</div>
+            <div style="font-size:var(--text-xs);color:var(--color-on-surface-muted)">${escapeHtml(user.username)}</div>
           </div>
-          <input class="form-input"
-                 type="text"
-                 value="${escapeHtml(user.name || "")}"
-                 onchange="updateUserField(${index}, 'name', this.value)"
-                 style="max-width:140px;"
-                 aria-label="Naam van gebruiker ${index + 1}" />
         </div>
       </td>
+      <td>${escapeHtml(user.email || "—")}</td>
+      <td><span class="badge badge--primary">${escapeHtml(user.section || "—")}</span></td>
+      <td><span class="badge ${user.role === "admin" ? "badge--warning" : "badge--success"}">${user.role === "admin" ? "Beheerder" : "Teamlid"}</span></td>
       <td>
-        <input class="form-input"
-               type="email"
-               value="${escapeHtml(user.email || "")}"
-               onchange="updateUserField(${index}, 'email', this.value)"
-               style="max-width:200px;"
-               aria-label="E-mail van gebruiker ${index + 1}" />
-      </td>
-      <td>
-        <select class="form-input"
-                onchange="updateUserField(${index}, 'section', this.value)"
-                style="max-width:200px;"
-                aria-label="Sectie van gebruiker ${index + 1}">
-          <option value="Inleiding & Stelling" ${user.section === "Inleiding & Stelling" ? "selected" : ""}>Inleiding & Stelling</option>
-          <option value="Argumenten" ${user.section === "Argumenten" ? "selected" : ""}>Argumenten</option>
-          <option value="Tegenargument" ${user.section === "Tegenargument" ? "selected" : ""}>Tegenargument</option>
-          <option value="Conclusie & Weerlegging" ${user.section === "Conclusie & Weerlegging" ? "selected" : ""}>Conclusie & Weerlegging</option>
-        </select>
-      </td>
-      <td>
-        <span class="badge badge--primary">${escapeHtml(user.section || "Onbekend")}</span>
-      </td>
-    `;
+        <div style="display:flex;gap:var(--space-2);">
+          <button class="btn btn--sm btn--secondary" onclick="openUserEditModal(${user.id})" aria-label="Bewerk ${escapeHtml(user.name)}">
+            <span class="material-icons-round" aria-hidden="true">edit</span>
+          </button>
+          <button class="btn btn--sm btn--ghost" onclick="deleteUser(${user.id}, '${escapeHtml(user.name)}')" aria-label="Verwijder ${escapeHtml(user.name)}" style="color:var(--color-error)">
+            <span class="material-icons-round" aria-hidden="true">delete</span>
+          </button>
+        </div>
+      </td>`;
     tbody.appendChild(tr);
   });
 }
 
-window.updateUserField = function (index, field, value) {
-  if (users_data[index]) {
-    users_data[index][field] = value;
-    // Herrender de badge in dezelfde rij
-    renderUsers();
+window.openUserEditModal = function (userId) {
+  const user = usersData.find((u) => u.id === userId);
+  if (!user) return;
+  document.getElementById("editUserId").value = user.id;
+  document.getElementById("editUserName").value = user.name;
+  document.getElementById("editUserUsername").value = user.username;
+  document.getElementById("editUserEmail").value = user.email || "";
+  document.getElementById("editUserSection").value = user.section || "";
+  document.getElementById("editUserRole").value = user.role;
+  document.getElementById("editUserPassword").value = "";
+  const overlay = document.getElementById("userEditModal");
+  overlay.classList.add("modal-overlay--open");
+  overlay.setAttribute("aria-hidden", "false");
+};
+
+window.closeUserEditModal = function () {
+  const overlay = document.getElementById("userEditModal");
+  overlay.classList.remove("modal-overlay--open");
+  overlay.setAttribute("aria-hidden", "true");
+};
+
+window.saveUserEdit = async function () {
+  const id = document.getElementById("editUserId").value;
+  const name = document.getElementById("editUserName").value.trim();
+  const username = document.getElementById("editUserUsername").value.trim();
+  const email = document.getElementById("editUserEmail").value.trim();
+  const section = document.getElementById("editUserSection").value;
+  const role = document.getElementById("editUserRole").value;
+  const password = document.getElementById("editUserPassword").value.trim();
+
+  if (!name || !username) {
+    showSnackbar("Naam en gebruikersnaam zijn verplicht.", "error");
+    return;
+  }
+
+  const payload = { name, username, email, section, role };
+  if (password) payload.password = password;
+
+  try {
+    const res = await fetch(`/api/users/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      await fetchUsers();
+      renderUsers();
+      closeUserEditModal();
+      showSnackbar("Gebruiker bijgewerkt!", "success");
+    } else {
+      showSnackbar(data.error || "Opslaan mislukt.", "error");
+    }
+  } catch {
+    showSnackbar("Verbindingsfout.", "error");
   }
 };
 
-window.saveUsers = async function () {
-  const btn = document.getElementById("saveUsersBtn");
-  setButtonLoading(btn, true);
+window.openAddUserModal = function () {
+  document.getElementById("addUserName").value = "";
+  document.getElementById("addUserUsername").value = "";
+  document.getElementById("addUserEmail").value = "";
+  document.getElementById("addUserSection").value = "Argumenten";
+  document.getElementById("addUserRole").value = "member";
+  document.getElementById("addUserPassword").value = "";
+  const overlay = document.getElementById("userAddModal");
+  overlay.classList.add("modal-overlay--open");
+  overlay.setAttribute("aria-hidden", "false");
+};
+
+window.closeAddUserModal = function () {
+  const overlay = document.getElementById("userAddModal");
+  overlay.classList.remove("modal-overlay--open");
+  overlay.setAttribute("aria-hidden", "true");
+};
+
+window.saveNewUser = async function () {
+  const name = document.getElementById("addUserName").value.trim();
+  const username = document.getElementById("addUserUsername").value.trim();
+  const email = document.getElementById("addUserEmail").value.trim();
+  const section = document.getElementById("addUserSection").value;
+  const role = document.getElementById("addUserRole").value;
+  const password = document.getElementById("addUserPassword").value.trim();
+
+  if (!name || !username || !password) {
+    showSnackbar("Naam, gebruikersnaam en wachtwoord zijn verplicht.", "error");
+    return;
+  }
+
   try {
     const res = await fetch("/api/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(users_data),
+      body: JSON.stringify({ name, username, email, section, role, password }),
     });
+    const data = await res.json();
     if (res.ok) {
-      showSnackbar("Gebruikers opgeslagen!", "success");
-    } else if (res.status === 401) {
-      showSnackbar("Sessie verlopen - log opnieuw in.", "error");
-      showLogin();
+      await fetchUsers();
+      renderUsers();
+      closeAddUserModal();
+      showSnackbar("Gebruiker toegevoegd!", "success");
     } else {
-      showSnackbar("Opslaan mislukt. Probeer opnieuw.", "error");
+      showSnackbar(data.error || "Toevoegen mislukt.", "error");
     }
   } catch {
-    showSnackbar("Verbindingsfout bij opslaan.", "error");
-  } finally {
-    setButtonLoading(btn, false);
+    showSnackbar("Verbindingsfout.", "error");
+  }
+};
+
+window.deleteUser = async function (id, name) {
+  if (!confirm(`Weet je zeker dat je ${name} wilt verwijderen?`)) return;
+  try {
+    const res = await fetch(`/api/users/${id}`, { method: "DELETE" });
+    const data = await res.json();
+    if (res.ok) {
+      await fetchUsers();
+      renderUsers();
+      showSnackbar("Gebruiker verwijderd.", "warning");
+    } else {
+      showSnackbar(data.error || "Verwijderen mislukt.", "error");
+    }
+  } catch {
+    showSnackbar("Verbindingsfout.", "error");
+  }
+};
+
+// ── Wachtwoord wijzigen ───────────────────────────────────────────
+function renderPasswordForm() {
+  // Already in HTML, just clear it
+  ["currentPassword", "newPassword", "newPasswordConfirm"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+}
+
+window.changePassword = async function (e) {
+  e.preventDefault();
+  const current = document.getElementById("currentPassword")?.value;
+  const next = document.getElementById("newPassword")?.value;
+  const confirm = document.getElementById("newPasswordConfirm")?.value;
+  const errorEl = document.getElementById("passwordError");
+
+  if (next !== confirm) {
+    showFormError(errorEl, "Nieuwe wachtwoorden komen niet overeen.");
+    return;
+  }
+  if (!next || next.length < 6) {
+    showFormError(errorEl, "Wachtwoord moet minimaal 6 tekens zijn.");
+    return;
+  }
+  clearFormError(errorEl);
+
+  try {
+    const res = await fetch("/api/me/password", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ currentPassword: current, newPassword: next }),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      showSnackbar("Wachtwoord gewijzigd!", "success");
+      renderPasswordForm();
+    } else {
+      showFormError(errorEl, data.error || "Wijzigen mislukt.");
+    }
+  } catch {
+    showFormError(errorEl, "Verbindingsfout.");
   }
 };
 
 // ── Hulpfuncties ──────────────────────────────────────────────────
 function setButtonLoading(btn, loading) {
   if (!btn) return;
-  if (loading) {
-    btn.classList.add("btn--loading");
-    btn.disabled = true;
-  } else {
-    btn.classList.remove("btn--loading");
-    btn.disabled = false;
-  }
+  btn.classList.toggle("btn--loading", loading);
+  btn.disabled = loading;
 }
-
 function showFormError(el, msg) {
   if (!el) return;
   el.textContent = msg;
   el.style.display = "flex";
 }
-
 function clearFormError(el) {
   if (!el) return;
   el.textContent = "";
   el.style.display = "none";
 }
-
 function escapeHtml(str) {
   return String(str)
     .replace(/&/g, "&amp;")
@@ -385,9 +546,16 @@ function escapeHtml(str) {
     .replace(/'/g, "&#x27;");
 }
 
-// Hergebruik snackbar uit main.js als die geladen is
 window.showSnackbar =
   window.showSnackbar ||
   function (msg, type) {
-    console.log(`[${type || "info"}] ${msg}`);
+    console.log(`[${type}] ${msg}`);
   };
+
+window.togglePasswordVisibility = function (inputId, iconId) {
+  const input = document.getElementById(inputId);
+  const eye = document.getElementById(iconId);
+  if (!input || !eye) return;
+  input.type = input.type === "password" ? "text" : "password";
+  eye.textContent = input.type === "password" ? "visibility" : "visibility_off";
+};

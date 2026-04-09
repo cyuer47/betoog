@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Een betoog over de noodzaak van betere digitalisering op de middelbare school. Argumenten, tegenargumenten en conclusie."
-    />
-    <meta
-      name="keywords"
-      content="digitalisering, middelbare school, onderwijs, technologie, betoog"
+      content="Een betoog over de noodzaak van betere digitalisering op de middelbare school."
     />
     <meta
       property="og:title"
@@ -24,15 +20,12 @@
     <link rel="shortcut icon" href="/img/logo.png" type="image/png" />
   </head>
   <body>
-    <!-- Skip navigatie voor toegankelijkheid -->
     <a href="#main-content" class="skip-link">Ga naar inhoud</a>
 
-    <!-- Loading Screen -->
     <div
       class="loading-screen"
       id="loadingScreen"
       role="status"
-      aria-live="polite"
       aria-label="Pagina laden"
     >
       <div class="loading-screen__logo">Digitaal<span>School</span></div>
@@ -40,7 +33,6 @@
       <div class="loading-screen__text">Laden…</div>
     </div>
 
-    <!-- Voortgangsbalk -->
     <div
       class="progress-bar"
       role="progressbar"
@@ -51,7 +43,6 @@
       <div class="progress-bar__fill" id="progressBar"></div>
     </div>
 
-    <!-- Navbar -->
     <header class="navbar" id="navbar" role="banner">
       <div class="navbar__container">
         <a
@@ -63,23 +54,15 @@
             <span class="material-icons-round">computer</span>
           </div>
           <div class="navbar__logo-text">
-            DigitaalSchool
-            <span>Schoolproject 2026</span>
+            DigitaalSchool<span>Schoolproject 2026</span>
           </div>
         </a>
-
         <nav class="navbar__nav" aria-label="Hoofdnavigatie">
-          <a
-            href="/"
-            class="navbar__nav-link navbar__nav-link--active"
-            aria-current="page"
-            >Home</a
-          >
-          <a href="/about.html" class="navbar__nav-link">Over ons</a>
-          <a href="/privacy.html" class="navbar__nav-link">Privacy</a>
-          <a href="/admin.html" class="navbar__nav-link">Admin</a>
+          <a href="/" class="navbar__nav-link">Home</a>
+          <a href="/about" class="navbar__nav-link">Over ons</a>
+          <a href="/privacy" class="navbar__nav-link">Privacy</a>
+          <a href="/admin" class="navbar__nav-link">Admin</a>
         </nav>
-
         <div class="navbar__actions">
           <button
             class="navbar__theme-btn"
@@ -103,7 +86,6 @@
       </div>
     </header>
 
-    <!-- Mobile menu -->
     <nav
       class="mobile-menu"
       id="mobileMenu"
@@ -111,36 +93,31 @@
       aria-hidden="true"
     >
       <div class="mobile-menu__nav">
-        <a
-          href="/"
-          class="mobile-menu__link mobile-menu__link--active"
-          aria-current="page"
+        <a href="/" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true">home</span>
+          Home</a
         >
-          <span class="material-icons-round" aria-hidden="true">home</span>
-          Home
-        </a>
-        <a href="/about.html" class="mobile-menu__link">
-          <span class="material-icons-round" aria-hidden="true">group</span>
-          Over ons
-        </a>
-        <a href="/privacy.html" class="mobile-menu__link">
-          <span class="material-icons-round" aria-hidden="true"
+        <a href="/about" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true">group</span>
+          Over ons</a
+        >
+        <a href="/privacy" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true"
             >privacy_tip</span
           >
-          Privacy
-        </a>
-        <a href="/admin.html" class="mobile-menu__link">
-          <span class="material-icons-round" aria-hidden="true"
+          Privacy</a
+        >
+        <a href="/admin" class="mobile-menu__link"
+          ><span class="material-icons-round" aria-hidden="true"
             >admin_panel_settings</span
           >
-          Admin
-        </a>
+          Admin</a
+        >
       </div>
     </nav>
 
-    <!-- Hoofdinhoud -->
     <main id="main-content">
-      <!-- ══ HERO SECTIE ══ -->
+      <!-- HERO -->
       <section class="hero" aria-labelledby="hero-title">
         <div class="container">
           <div class="hero__eyebrow" aria-hidden="true">
@@ -150,9 +127,9 @@
             Schoolproject · Betoog
           </div>
           <h1 class="hero__title" id="hero-title">
-            Digitalisering op de<br />
-            middelbare school moet<br />
-            <em>verbeterd worden</em>
+            Digitalisering op de<br />middelbare school moet<br /><em
+              >verbeterd worden</em
+            >
           </h1>
           <p class="hero__subtitle">
             Technologie verandert de wereld snel. Toch loopt het Nederlandse
@@ -167,7 +144,7 @@
                   .getElementById('stelling')
                   .scrollIntoView({ behavior: 'smooth' })
               "
-              aria-label="Lees het volledige betoog"
+              aria-label="Lees het betoog"
             >
               <span class="material-icons-round" aria-hidden="true"
                 >article</span
@@ -181,7 +158,7 @@
                   .getElementById('argumenten')
                   .scrollIntoView({ behavior: 'smooth' })
               "
-              aria-label="Bekijk de argumenten"
+              aria-label="Bekijk argumenten"
             >
               <span class="material-icons-round" aria-hidden="true"
                 >format_list_bulleted</span
@@ -214,7 +191,7 @@
         </div>
       </section>
 
-      <!-- ══ INLEIDING SECTIE ══ -->
+      <!-- INLEIDING -->
       <section
         class="betoog-section betoog-section--alt"
         id="inleiding"
@@ -235,7 +212,6 @@
               Inleiding
             </h2>
           </div>
-
           <div
             class="grid grid--2"
             style="align-items: start; gap: var(--space-8)"
@@ -246,31 +222,36 @@
                   <span class="material-icons-round">open_in_new</span>
                 </div>
                 <div class="card__eyebrow">Context</div>
-                <h3 class="card__title">Waarom digitalisering nu urgent is</h3>
-                <p class="card__text">
-                  We leven in een digitale wereld. Bijna alles om ons heen is
-                  verbonden met technologie: van de supermarkt tot de dokter,
-                  van het nieuws tot onze vrienden. Toch starten Nederlandse
-                  middelbare scholieren elke dag in klaslokalen die
-                  technologisch decennia achterlopen.
-                </p>
-                <p class="card__text" style="margin-top: var(--space-4)">
-                  Papieren schoolboeken, krijtborden en mondelinge uitleg zijn
-                  na meer dan honderd jaar nog steeds de standaard. Terwijl de
-                  wereld buiten de school razendsnel digitaliseert, past het
-                  onderwijs zich nauwelijks aan. Dit is een probleem dat we
-                  serieus moeten nemen.
-                </p>
+                <h3 class="card__title" id="section-title-inleiding">
+                  Waarom digitalisering nu urgent is
+                </h3>
+                <div id="section-content-inleiding">
+                  <p class="card__text">
+                    We leven in een digitale wereld. Bijna alles om ons heen is
+                    verbonden met technologie: van de supermarkt tot de dokter,
+                    van het nieuws tot onze vrienden. Toch starten Nederlandse
+                    middelbare scholieren elke dag in klaslokalen die
+                    technologisch decennia achterlopen.
+                  </p>
+                  <p class="card__text" style="margin-top: var(--space-4)">
+                    Papieren schoolboeken, krijtborden en mondelinge uitleg zijn
+                    na meer dan honderd jaar nog steeds de standaard. Terwijl de
+                    wereld buiten de school razendsnel digitaliseert, past het
+                    onderwijs zich nauwelijks aan. Dit is een probleem dat we
+                    serieus moeten nemen.
+                  </p>
+                </div>
                 <div class="card__footer">
                   <div class="card__author">
                     <div class="card__author-avatar" aria-hidden="true">P1</div>
-                    <span>Persoon 1 · Inleiding</span>
+                    <span id="section-author-inleiding"
+                      >Persoon 1 · Inleiding</span
+                    >
                   </div>
                   <span class="badge badge--primary">Inleiding</span>
                 </div>
               </div>
             </div>
-
             <div
               class="reveal reveal--delay-2"
               style="display: flex; flex-direction: column; gap: var(--space-5)"
@@ -400,7 +381,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="quote-block reveal reveal--delay-3">
                 <p class="quote-block__text">
                   "Onderwijs is de sleutel tot de toekomst, maar die sleutel
@@ -412,35 +392,7 @@
         </div>
       </section>
 
-      <!-- ══ ADVERTENTIE 1 ══ -->
-      <div class="container">
-        <div class="ad-container" id="ad-top" aria-label="Advertentie">
-          <p class="ad-label">Advertentie</p>
-          <!-- Google AdSense slot - wordt ingeladen door ads.js -->
-          <ins
-            class="adsbygoogle"
-            id="adsense-banner-1"
-            style="display: block"
-            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-            data-ad-slot="1234567890"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-            aria-label="Google advertentie"
-          ></ins>
-          <!-- Fallback demo advertentie -->
-          <div class="ad-demo" id="ad-fallback-1" aria-hidden="true">
-            <div class="ad-demo__icon">
-              <span class="material-icons-round">campaign</span>
-            </div>
-            <div class="ad-demo__text">
-              📢 Demo Advertentie - Hier verschijnt straks een Google AdSense
-              banner
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══ STELLING SECTIE ══ -->
+      <!-- STELLING -->
       <section
         class="betoog-section"
         id="stelling"
@@ -459,11 +411,10 @@
             </div>
             <h2 class="section-header__title" id="stelling-title">Stelling</h2>
           </div>
-
           <div
             class="stelling-card reveal"
             role="article"
-            aria-label="Hoofdstelling van het betoog"
+            aria-label="Hoofdstelling"
           >
             <div class="stelling-card__label" aria-hidden="true">
               <span
@@ -473,7 +424,7 @@
               >
               Onze stelling
             </div>
-            <p class="stelling-card__text">
+            <p class="stelling-card__text" id="section-title-stelling">
               Digitalisering op de middelbare school moet fundamenteel verbeterd
               worden, zodat leerlingen worden voorbereid op de digitale
               samenleving en alle voordelen van moderne technologie kunnen
@@ -494,12 +445,11 @@
                   color: rgba(255, 255, 255, 0.8);
                   border-color: rgba(255, 255, 255, 0.2);
                 "
-              >
-                <span class="material-icons-round" aria-hidden="true"
+                ><span class="material-icons-round" aria-hidden="true"
                   >devices</span
                 >
-                Technologie
-              </span>
+                Technologie</span
+              >
               <span
                 class="chip"
                 style="
@@ -507,12 +457,11 @@
                   color: rgba(255, 255, 255, 0.8);
                   border-color: rgba(255, 255, 255, 0.2);
                 "
-              >
-                <span class="material-icons-round" aria-hidden="true"
+                ><span class="material-icons-round" aria-hidden="true"
                   >school</span
                 >
-                Onderwijs
-              </span>
+                Onderwijs</span
+              >
               <span
                 class="chip"
                 style="
@@ -520,31 +469,17 @@
                   color: rgba(255, 255, 255, 0.8);
                   border-color: rgba(255, 255, 255, 0.2);
                 "
-              >
-                <span class="material-icons-round" aria-hidden="true"
+                ><span class="material-icons-round" aria-hidden="true"
                   >trending_up</span
                 >
-                Toekomst
-              </span>
-              <span
-                class="chip"
-                style="
-                  background: rgba(255, 255, 255, 0.15);
-                  color: rgba(255, 255, 255, 0.8);
-                  border-color: rgba(255, 255, 255, 0.2);
-                "
+                Toekomst</span
               >
-                <span class="material-icons-round" aria-hidden="true"
-                  >accessibility</span
-                >
-                Toegankelijkheid
-              </span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ══ ARGUMENTEN SECTIE ══ -->
+      <!-- ARGUMENTEN -->
       <section
         class="betoog-section betoog-section--alt"
         id="argumenten"
@@ -565,12 +500,10 @@
               Argumenten
             </h2>
             <p class="section-header__text">
-              Klik op een argument hieronder om de toelichting te lezen. Elk
-              argument is onderbouwd met feiten en voorbeelden.
+              Klik op een argument hieronder om de toelichting te lezen.
             </p>
           </div>
 
-          <!-- Argument Selector -->
           <div
             class="arg-selector reveal"
             role="tablist"
@@ -615,7 +548,6 @@
                 Argument 3
               </button>
             </div>
-
             <div class="arg-selector__content">
               <!-- Argument 1 -->
               <div
@@ -630,126 +562,20 @@
                   >
                   Arbeidsmarkt
                 </div>
-                <h3 class="arg-selector__pane-title" id="arg1-title">
+                <h3
+                  class="arg-selector__pane-title"
+                  id="section-title-argument1"
+                >
                   Argument 1: Betere voorbereiding op de arbeidsmarkt
                 </h3>
-                <p class="arg-selector__pane-text" id="arg1-text">
-                  Leerlingen die digitale vaardigheden beheersen, zijn beter
-                  voorbereid op de moderne arbeidsmarkt. Bijna alle sectoren
-                  vragen tegenwoordig digitale basiskennis: van boekhouding tot
-                  marketing, van gezondheidszorg tot techniek.
-                </p>
-                <p
-                  class="arg-selector__pane-text"
-                  style="margin-top: var(--space-4)"
-                >
-                  Onderzoek van het World Economic Forum toont dat tegen 2030
-                  meer dan 85 miljoen banen zullen verdwijnen door
-                  automatisering, maar er tegelijkertijd 97 miljoen nieuwe
-                  functies bijkomen — functies die digitale vaardigheden
-                  vereisen. Door digitalisering te verbeteren op school zorgen
-                  we dat jongeren niet achterblijven in de arbeidsmarkt van de
-                  toekomst.
-                </p>
-                <div
-                  style="
-                    margin-top: var(--space-5);
-                    padding: var(--space-4);
-                    background: var(--color-primary-surface);
-                    border-radius: var(--radius-xl);
-                  "
-                >
-                  <div
-                    style="
-                      font-size: var(--text-xs);
-                      font-weight: var(--weight-bold);
-                      color: var(--color-primary);
-                      text-transform: uppercase;
-                      letter-spacing: 0.06em;
-                      margin-bottom: var(--space-2);
-                    "
-                  >
-                    Kernpunten
-                  </div>
-                  <ul
-                    style="
-                      list-style: none;
-                      display: flex;
-                      flex-direction: column;
-                      gap: var(--space-2);
-                    "
-                  >
-                    <li
-                      style="
-                        display: flex;
-                        align-items: flex-start;
-                        gap: var(--space-2);
-                        font-size: var(--text-sm);
-                        color: var(--color-on-surface-muted);
-                      "
-                    >
-                      <span
-                        class="material-icons-round"
-                        style="
-                          font-size: 16px;
-                          color: var(--color-success);
-                          flex-shrink: 0;
-                          margin-top: 2px;
-                        "
-                        aria-hidden="true"
-                        >check_circle</span
-                      >
-                      97 miljoen nieuwe digitale banen in 2030
-                    </li>
-                    <li
-                      style="
-                        display: flex;
-                        align-items: flex-start;
-                        gap: var(--space-2);
-                        font-size: var(--text-sm);
-                        color: var(--color-on-surface-muted);
-                      "
-                    >
-                      <span
-                        class="material-icons-round"
-                        style="
-                          font-size: 16px;
-                          color: var(--color-success);
-                          flex-shrink: 0;
-                          margin-top: 2px;
-                        "
-                        aria-hidden="true"
-                        >check_circle</span
-                      >
-                      Digitale vaardigheden vergroten salarisniveau met
-                      gemiddeld 18%
-                    </li>
-                    <li
-                      style="
-                        display: flex;
-                        align-items: flex-start;
-                        gap: var(--space-2);
-                        font-size: var(--text-sm);
-                        color: var(--color-on-surface-muted);
-                      "
-                    >
-                      <span
-                        class="material-icons-round"
-                        style="
-                          font-size: 16px;
-                          color: var(--color-success);
-                          flex-shrink: 0;
-                          margin-top: 2px;
-                        "
-                        aria-hidden="true"
-                        >check_circle</span
-                      >
-                      Leerlingen met ICT-vaardigheden vinden 3x sneller werk
-                    </li>
-                  </ul>
+                <div id="section-content-argument1">
+                  <p class="arg-selector__pane-text">
+                    Leerlingen die digitale vaardigheden beheersen, zijn beter
+                    voorbereid op de moderne arbeidsmarkt. Bijna alle sectoren
+                    vragen tegenwoordig digitale basiskennis.
+                  </p>
                 </div>
               </div>
-
               <!-- Argument 2 -->
               <div
                 class="arg-selector__pane"
@@ -763,124 +589,18 @@
                   >
                   Leerrendement
                 </div>
-                <h3 class="arg-selector__pane-title" id="arg2-title">
+                <h3
+                  class="arg-selector__pane-title"
+                  id="section-title-argument2"
+                >
                   Argument 2: Efficiënter en gepersonaliseerd leren
                 </h3>
-                <p class="arg-selector__pane-text" id="arg2-text">
-                  Digitale tools maken adaptief leren mogelijk. Software past
-                  zich aan het niveau van de individuele leerling aan, waardoor
-                  iedereen in eigen tempo leert. Dit verhoogt het leerrendement
-                  aanzienlijk ten opzichte van klassikaal onderwijs waarbij de
-                  leraar één tempo voor de hele klas moet aanhouden.
-                </p>
-                <p
-                  class="arg-selector__pane-text"
-                  style="margin-top: var(--space-4)"
-                >
-                  Platformen zoals Khan Academy, Duolingo en diverse Nederlandse
-                  leermethodes tonen aan dat leerlingen met adaptieve tools tot
-                  60% sneller nieuwe stof beheersen. Bovendien ontvangen leraren
-                  real-time inzicht in de voortgang van elke leerling, zodat
-                  gerichte hulp mogelijk wordt.
-                </p>
-                <div
-                  style="
-                    margin-top: var(--space-5);
-                    padding: var(--space-4);
-                    background: var(--color-primary-surface);
-                    border-radius: var(--radius-xl);
-                  "
-                >
-                  <div
-                    style="
-                      font-size: var(--text-xs);
-                      font-weight: var(--weight-bold);
-                      color: var(--color-primary);
-                      text-transform: uppercase;
-                      letter-spacing: 0.06em;
-                      margin-bottom: var(--space-2);
-                    "
-                  >
-                    Kernpunten
-                  </div>
-                  <ul
-                    style="
-                      list-style: none;
-                      display: flex;
-                      flex-direction: column;
-                      gap: var(--space-2);
-                    "
-                  >
-                    <li
-                      style="
-                        display: flex;
-                        align-items: flex-start;
-                        gap: var(--space-2);
-                        font-size: var(--text-sm);
-                        color: var(--color-on-surface-muted);
-                      "
-                    >
-                      <span
-                        class="material-icons-round"
-                        style="
-                          font-size: 16px;
-                          color: var(--color-success);
-                          flex-shrink: 0;
-                          margin-top: 2px;
-                        "
-                        aria-hidden="true"
-                        >check_circle</span
-                      >
-                      Tot 60% hogere leersnelheid met adaptieve tools
-                    </li>
-                    <li
-                      style="
-                        display: flex;
-                        align-items: flex-start;
-                        gap: var(--space-2);
-                        font-size: var(--text-sm);
-                        color: var(--color-on-surface-muted);
-                      "
-                    >
-                      <span
-                        class="material-icons-round"
-                        style="
-                          font-size: 16px;
-                          color: var(--color-success);
-                          flex-shrink: 0;
-                          margin-top: 2px;
-                        "
-                        aria-hidden="true"
-                        >check_circle</span
-                      >
-                      Gepersonaliseerde feedback motiveert leerlingen
-                    </li>
-                    <li
-                      style="
-                        display: flex;
-                        align-items: flex-start;
-                        gap: var(--space-2);
-                        font-size: var(--text-sm);
-                        color: var(--color-on-surface-muted);
-                      "
-                    >
-                      <span
-                        class="material-icons-round"
-                        style="
-                          font-size: 16px;
-                          color: var(--color-success);
-                          flex-shrink: 0;
-                          margin-top: 2px;
-                        "
-                        aria-hidden="true"
-                        >check_circle</span
-                      >
-                      Leraren kunnen efficiënter gerichte hulp bieden
-                    </li>
-                  </ul>
+                <div id="section-content-argument2">
+                  <p class="arg-selector__pane-text">
+                    Digitale tools maken adaptief leren mogelijk.
+                  </p>
                 </div>
               </div>
-
               <!-- Argument 3 -->
               <div
                 class="arg-selector__pane"
@@ -894,127 +614,22 @@
                   >
                   Toegankelijkheid
                 </div>
-                <h3 class="arg-selector__pane-title" id="arg3-title">
+                <h3
+                  class="arg-selector__pane-title"
+                  id="section-title-argument3"
+                >
                   Argument 3: Duurzaamheid en toegankelijkheid
                 </h3>
-                <p class="arg-selector__pane-text" id="arg3-text">
-                  Digitale leermiddelen zijn goedkoper op de lange termijn dan
-                  papieren boeken. Een gemiddeld schoolboek kost €35-€50 en
-                  veroudert na 3-5 jaar. Digitale methodes worden continu
-                  bijgewerkt voor een fractie van de kosten.
-                </p>
-                <p
-                  class="arg-selector__pane-text"
-                  style="margin-top: var(--space-4)"
-                >
-                  Bovendien zijn e-books en online platforms altijd beschikbaar,
-                  ook vanuit huis. Dit vergroot de toegankelijkheid enorm voor
-                  leerlingen met een beperking, een chronische ziekte of
-                  thuissituaties waarbij fysieke school moeilijk is.
-                  Screenreaders, tekstgrootte-aanpassingen en ondertiteling zijn
-                  standaard mogelijk met digitale leermiddelen.
-                </p>
-                <div
-                  style="
-                    margin-top: var(--space-5);
-                    padding: var(--space-4);
-                    background: var(--color-primary-surface);
-                    border-radius: var(--radius-xl);
-                  "
-                >
-                  <div
-                    style="
-                      font-size: var(--text-xs);
-                      font-weight: var(--weight-bold);
-                      color: var(--color-primary);
-                      text-transform: uppercase;
-                      letter-spacing: 0.06em;
-                      margin-bottom: var(--space-2);
-                    "
-                  >
-                    Kernpunten
-                  </div>
-                  <ul
-                    style="
-                      list-style: none;
-                      display: flex;
-                      flex-direction: column;
-                      gap: var(--space-2);
-                    "
-                  >
-                    <li
-                      style="
-                        display: flex;
-                        align-items: flex-start;
-                        gap: var(--space-2);
-                        font-size: var(--text-sm);
-                        color: var(--color-on-surface-muted);
-                      "
-                    >
-                      <span
-                        class="material-icons-round"
-                        style="
-                          font-size: 16px;
-                          color: var(--color-success);
-                          flex-shrink: 0;
-                          margin-top: 2px;
-                        "
-                        aria-hidden="true"
-                        >check_circle</span
-                      >
-                      Scholen besparen tot 40% op leermiddelenkosten
-                    </li>
-                    <li
-                      style="
-                        display: flex;
-                        align-items: flex-start;
-                        gap: var(--space-2);
-                        font-size: var(--text-sm);
-                        color: var(--color-on-surface-muted);
-                      "
-                    >
-                      <span
-                        class="material-icons-round"
-                        style="
-                          font-size: 16px;
-                          color: var(--color-success);
-                          flex-shrink: 0;
-                          margin-top: 2px;
-                        "
-                        aria-hidden="true"
-                        >check_circle</span
-                      >
-                      Altijd actuele leerstof zonder extra kosten
-                    </li>
-                    <li
-                      style="
-                        display: flex;
-                        align-items: flex-start;
-                        gap: var(--space-2);
-                        font-size: var(--text-sm);
-                        color: var(--color-on-surface-muted);
-                      "
-                    >
-                      <span
-                        class="material-icons-round"
-                        style="
-                          font-size: 16px;
-                          color: var(--color-success);
-                          flex-shrink: 0;
-                          margin-top: 2px;
-                        "
-                        aria-hidden="true"
-                        >check_circle</span
-                      >
-                      Toegankelijker voor leerlingen met een beperking
-                    </li>
-                  </ul>
+                <div id="section-content-argument3">
+                  <p class="arg-selector__pane-text">
+                    Digitale leermiddelen zijn goedkoper op de lange termijn.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Argumenten overzichtskaarten -->
+          <!-- Overzichtskaarten -->
           <div class="grid grid--3" style="margin-top: var(--space-8)">
             <div
               class="card card--elevated reveal reveal--delay-1"
@@ -1032,7 +647,7 @@
               <div class="card__footer">
                 <div class="card__author">
                   <div class="card__author-avatar" aria-hidden="true">P2</div>
-                  <span>Persoon 2</span>
+                  <span id="section-author-argument1">Persoon 2</span>
                 </div>
                 <button
                   class="btn btn--sm btn--secondary"
@@ -1042,7 +657,7 @@
                       .getElementById('argumenten')
                       .scrollIntoView({ behavior: 'smooth' });
                   "
-                  aria-label="Lees argument 1 volledig"
+                  aria-label="Lees argument 1"
                 >
                   Lees meer
                 </button>
@@ -1064,7 +679,7 @@
               <div class="card__footer">
                 <div class="card__author">
                   <div class="card__author-avatar" aria-hidden="true">P2</div>
-                  <span>Persoon 2</span>
+                  <span id="section-author-argument2">Persoon 2</span>
                 </div>
                 <button
                   class="btn btn--sm btn--secondary"
@@ -1074,7 +689,7 @@
                       .getElementById('argumenten')
                       .scrollIntoView({ behavior: 'smooth' });
                   "
-                  aria-label="Lees argument 2 volledig"
+                  aria-label="Lees argument 2"
                 >
                   Lees meer
                 </button>
@@ -1096,7 +711,7 @@
               <div class="card__footer">
                 <div class="card__author">
                   <div class="card__author-avatar" aria-hidden="true">P2</div>
-                  <span>Persoon 2</span>
+                  <span id="section-author-argument3">Persoon 2</span>
                 </div>
                 <button
                   class="btn btn--sm btn--secondary"
@@ -1106,7 +721,7 @@
                       .getElementById('argumenten')
                       .scrollIntoView({ behavior: 'smooth' });
                   "
-                  aria-label="Lees argument 3 volledig"
+                  aria-label="Lees argument 3"
                 >
                   Lees meer
                 </button>
@@ -1116,7 +731,7 @@
         </div>
       </section>
 
-      <!-- ══ TEGENARGUMENT + WEERLEGGING ══ -->
+      <!-- TEGENARGUMENT & WEERLEGGING -->
       <section
         class="betoog-section"
         id="tegenargument"
@@ -1131,22 +746,19 @@
                 aria-hidden="true"
                 >looks_4</span
               >
-              Onderdeel 4 & 5
+              Onderdeel 4 &amp; 5
             </div>
             <h2 class="section-header__title" id="tegenargument-title">
-              Tegenargument & Weerlegging
+              Tegenargument &amp; Weerlegging
             </h2>
           </div>
-
           <div
             class="grid grid--2"
             style="gap: var(--space-6); align-items: start"
           >
-            <!-- Tegenargument -->
             <div
               class="card card--elevated reveal reveal--delay-1"
               role="article"
-              aria-labelledby="tegenarg-title"
             >
               <div
                 class="card__icon"
@@ -1161,31 +773,23 @@
               <div class="card__eyebrow" style="color: var(--color-error)">
                 Tegenargument
               </div>
-              <h3 class="card__title" id="tegenarg-title">
+              <h3 class="card__title" id="section-title-tegenargument">
                 Digitalisering leidt tot afleiding
               </h3>
-              <p class="card__text">
-                Critici stellen dat smartphones en tablets in de klas leiden tot
-                afleiding. Leerlingen zouden social media en games gebruiken in
-                plaats van te leren. Bovendien zou te veel schermtijd schadelijk
-                zijn voor de ontwikkeling van jongeren, en zouden digitale
-                vaardigheden thuis ook geleerd kunnen worden.
-              </p>
-              <p class="card__text" style="margin-top: var(--space-4)">
-                Sommige onderwijsexperts pleiten zelfs voor een terugkeer naar
-                meer ambachtelijk schrijven en lezen, omdat dit de concentratie
-                en diep nadenken zou bevorderen.
-              </p>
+              <div id="section-content-tegenargument">
+                <p class="card__text">
+                  Critici stellen dat smartphones en tablets in de klas leiden
+                  tot afleiding. Leerlingen zouden social media en games
+                  gebruiken in plaats van te leren.
+                </p>
+              </div>
               <div class="card__footer">
                 <span class="badge badge--error">Tegenargument</span>
               </div>
             </div>
-
-            <!-- Weerlegging -->
             <div
               class="card card--featured reveal reveal--delay-2"
               role="article"
-              aria-labelledby="weerlegging-title"
             >
               <div
                 class="card__icon"
@@ -1200,32 +804,20 @@
               <div class="card__eyebrow" style="color: var(--color-success)">
                 Weerlegging
               </div>
-              <h3 class="card__title" id="weerlegging-title">
+              <h3 class="card__title" id="section-title-weerlegging">
                 Goed beleid voorkomt afleiding
               </h3>
-              <p class="card__text">
-                Dit tegenargument is begrijpelijk, maar gaat voorbij aan de kern
-                van de zaak. Afleiding ontstaat niet door technologie zelf, maar
-                door ontbrekend mediawijsheidsonderwijs en slechte
-                implementatie.
-              </p>
-              <p class="card__text" style="margin-top: var(--space-4)">
-                In landen als Finland en Estland, waar digitalisering van het
-                onderwijs het verst is gevorderd, scoren leerlingen juist hoger
-                op concentratie en studieresultaten. Met duidelijke regels,
-                educatief ontworpen software en goede begeleiding wordt
-                technologie een krachtig leermiddel in plaats van een bron van
-                afleiding.
-              </p>
-              <p class="card__text" style="margin-top: var(--space-4)">
-                Bovendien leert mediawijsheid — weten hoe je verantwoord omgaat
-                met technologie — leerlingen een vaardigheid die ze hun hele
-                leven nodig hebben.
-              </p>
+              <div id="section-content-weerlegging">
+                <p class="card__text">
+                  Dit tegenargument is begrijpelijk, maar gaat voorbij aan de
+                  kern van de zaak. Afleiding ontstaat niet door technologie
+                  zelf, maar door ontbrekend mediawijsheidsonderwijs.
+                </p>
+              </div>
               <div class="card__footer">
                 <div class="card__author">
                   <div class="card__author-avatar" aria-hidden="true">P3</div>
-                  <span>Persoon 3 · Weerlegging</span>
+                  <span id="section-author-weerlegging">Persoon 3</span>
                 </div>
                 <span class="badge badge--success">Weerlegging</span>
               </div>
@@ -1234,33 +826,7 @@
         </div>
       </section>
 
-      <!-- ══ ADVERTENTIE 2 ══ -->
-      <div class="container">
-        <div class="ad-container" id="ad-middle" aria-label="Advertentie">
-          <p class="ad-label">Advertentie</p>
-          <ins
-            class="adsbygoogle"
-            id="adsense-banner-2"
-            style="display: block"
-            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-            data-ad-slot="9876543210"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-            aria-label="Google advertentie"
-          ></ins>
-          <div class="ad-demo" id="ad-fallback-2" aria-hidden="true">
-            <div class="ad-demo__icon">
-              <span class="material-icons-round">campaign</span>
-            </div>
-            <div class="ad-demo__text">
-              📢 Demo Advertentie - Hier verschijnt straks een Google AdSense
-              banner
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══ CONCLUSIE SECTIE ══ -->
+      <!-- CONCLUSIE -->
       <section
         class="betoog-section betoog-section--alt"
         id="conclusie"
@@ -1281,12 +847,7 @@
               Conclusie
             </h2>
           </div>
-
-          <div
-            class="conclusie-card reveal"
-            role="article"
-            aria-labelledby="conclusie-main-title"
-          >
+          <div class="conclusie-card reveal" role="article">
             <div
               style="
                 font-size: var(--text-xs);
@@ -1301,44 +862,32 @@
             </div>
             <h3
               class="card__title"
-              id="conclusie-main-title"
               style="
                 font-family: var(--font-display);
                 font-size: var(--text-2xl);
                 color: var(--color-white);
                 margin-bottom: var(--space-5);
               "
+              id="section-title-conclusie"
             >
               Digitalisering is geen keuze meer - het is een noodzaak
             </h3>
-            <p
-              style="
-                color: rgba(255, 255, 255, 0.85);
-                font-size: var(--text-md);
-                line-height: 1.8;
-                margin-bottom: var(--space-5);
-              "
-            >
-              We hebben aangetoond dat betere digitalisering op de middelbare
-              school om drie sterke redenen noodzakelijk is: het bereidt
-              leerlingen voor op de arbeidsmarkt van de toekomst, het verhoogt
-              het leerrendement door gepersonaliseerd leren en het maakt
-              onderwijs toegankelijker en duurzamer.
-            </p>
-            <p
-              style="
-                color: rgba(255, 255, 255, 0.85);
-                font-size: var(--text-md);
-                line-height: 1.8;
-                margin-bottom: var(--space-6);
-              "
-            >
-              Het tegenargument over afleiding is begrijpelijk, maar wordt
-              weerlegd door internationale onderzoeken die aantonen dat goed
-              geïmplementeerde digitalisering juist betere resultaten geeft. Het
-              gaat niet om technologie <em>als doel</em>, maar om technologie
-              <em>als middel</em> voor beter onderwijs.
-            </p>
+            <div id="section-content-conclusie">
+              <p
+                style="
+                  color: rgba(255, 255, 255, 0.85);
+                  font-size: var(--text-md);
+                  line-height: 1.8;
+                  margin-bottom: var(--space-5);
+                "
+              >
+                We hebben aangetoond dat betere digitalisering op de middelbare
+                school om drie sterke redenen noodzakelijk is: het bereidt
+                leerlingen voor op de arbeidsmarkt van de toekomst, het verhoogt
+                het leerrendement door gepersonaliseerd leren en het maakt
+                onderwijs toegankelijker en duurzamer.
+              </p>
+            </div>
             <div style="display: flex; flex-wrap: wrap; gap: var(--space-3)">
               <button
                 class="btn"
@@ -1363,7 +912,7 @@
                   border: 1px solid rgba(255, 255, 255, 0.3);
                 "
                 onclick="window.print()"
-                aria-label="Druk dit betoog af"
+                aria-label="Druk af"
               >
                 <span class="material-icons-round" aria-hidden="true"
                   >print</span
@@ -1376,7 +925,6 @@
       </section>
     </main>
 
-    <!-- ══ FOOTER ══ -->
     <footer class="footer" role="contentinfo">
       <div class="container">
         <div class="footer__grid">
@@ -1384,45 +932,16 @@
             <div class="footer__brand-name">DigitaalSchool</div>
             <p class="footer__brand-desc">
               Een schoolproject over de noodzaak van betere digitalisering op de
-              Nederlandse middelbare school. Gemaakt door 3 leerlingen.
+              Nederlandse middelbare school.
             </p>
-            <div style="display: flex; gap: var(--space-2)">
-              <span
-                class="chip"
-                style="
-                  background: rgba(255, 255, 255, 0.08);
-                  color: rgba(255, 255, 255, 0.5);
-                  border-color: rgba(255, 255, 255, 0.1);
-                "
-                >HTML</span
-              >
-              <span
-                class="chip"
-                style="
-                  background: rgba(255, 255, 255, 0.08);
-                  color: rgba(255, 255, 255, 0.5);
-                  border-color: rgba(255, 255, 255, 0.1);
-                "
-                >CSS</span
-              >
-              <span
-                class="chip"
-                style="
-                  background: rgba(255, 255, 255, 0.08);
-                  color: rgba(255, 255, 255, 0.5);
-                  border-color: rgba(255, 255, 255, 0.1);
-                "
-                >Node.js</span
-              >
-            </div>
           </div>
           <div>
             <div class="footer__col-title">Navigatie</div>
             <div class="footer__links">
               <a href="/" class="footer__link">Home</a>
-              <a href="/about.html" class="footer__link">Over ons</a>
-              <a href="/privacy.html" class="footer__link">Privacy</a>
-              <a href="/admin.html" class="footer__link">Admin</a>
+              <a href="/about" class="footer__link">Over ons</a>
+              <a href="/privacy" class="footer__link">Privacy</a>
+              <a href="/admin" class="footer__link">Admin</a>
             </div>
           </div>
           <div>
@@ -1437,11 +956,9 @@
           <div>
             <div class="footer__col-title">Informatie</div>
             <div class="footer__links">
-              <a href="/privacy.html" class="footer__link">Privacybeleid</a>
-              <a href="/privacy.html#cookies" class="footer__link"
-                >Cookiebeleid</a
-              >
-              <a href="/about.html#contact" class="footer__link">Contact</a>
+              <a href="/privacy" class="footer__link">Privacybeleid</a>
+              <a href="/privacy#cookies" class="footer__link">Cookiebeleid</a>
+              <a href="/about#contact" class="footer__link">Contact</a>
             </div>
           </div>
         </div>
@@ -1462,7 +979,7 @@
       </div>
     </footer>
 
-    <!-- ══ MODAL / DIALOG ══ -->
+    <!-- Modal -->
     <div
       class="modal-overlay"
       id="shareModal"
@@ -1483,39 +1000,18 @@
           </button>
         </div>
         <div class="modal__body">
-          <p
-            style="
-              color: var(--color-on-surface-muted);
-              margin-bottom: var(--space-5);
-              font-size: var(--text-sm);
-            "
-          >
-            Deel dit betoog via een van de onderstaande opties.
-          </p>
           <div
             style="display: flex; flex-direction: column; gap: var(--space-3)"
           >
-            <button
-              class="btn btn--secondary"
-              onclick="copyLink()"
-              aria-label="Kopieer de link naar dit betoog"
-            >
+            <button class="btn btn--secondary" onclick="copyLink()">
               <span class="material-icons-round" aria-hidden="true">link</span>
               Link kopiëren
             </button>
-            <button
-              class="btn btn--secondary"
-              onclick="window.print()"
-              aria-label="Druk de pagina af"
-            >
+            <button class="btn btn--secondary" onclick="window.print()">
               <span class="material-icons-round" aria-hidden="true">print</span>
-              Afdrukken / PDF opslaan
+              Afdrukken / PDF
             </button>
-            <button
-              class="btn btn--secondary"
-              onclick="shareViaEmail()"
-              aria-label="Deel via e-mail"
-            >
+            <button class="btn btn--secondary" onclick="shareViaEmail()">
               <span class="material-icons-round" aria-hidden="true">email</span>
               Deel via e-mail
             </button>
@@ -1527,7 +1023,6 @@
       </div>
     </div>
 
-    <!-- ══ SNACKBAR CONTAINER ══ -->
     <div
       class="snackbar-container"
       id="snackbarContainer"
@@ -1535,34 +1030,26 @@
       aria-atomic="true"
     ></div>
 
-    <!-- ══ COOKIE BANNER ══ -->
     <div
       class="cookie-banner"
       id="cookieBanner"
       role="dialog"
       aria-label="Cookie-instelling"
-      aria-describedby="cookieText"
     >
       <div class="cookie-banner__inner">
-        <p class="cookie-banner__text" id="cookieText">
-          🍪 We gebruiken cookies om de website goed te laten werken en voor
-          Google AdSense advertenties. Lees meer in ons
-          <a href="/privacy.html">privacybeleid</a>.
+        <p class="cookie-banner__text">
+          🍪 We gebruiken cookies om de website goed te laten werken. Lees meer
+          in ons <a href="/privacy">privacybeleid</a>.
         </p>
         <div class="cookie-banner__actions">
           <button
             class="btn btn--ghost"
             style="color: rgba(255, 255, 255, 0.65)"
             onclick="declineCookies()"
-            aria-label="Weiger niet-essentiële cookies"
           >
             Weigeren
           </button>
-          <button
-            class="btn btn--accent"
-            onclick="acceptCookies()"
-            aria-label="Accepteer alle cookies"
-          >
+          <button class="btn btn--accent" onclick="acceptCookies()">
             Accepteren
           </button>
         </div>
@@ -1570,6 +1057,5 @@
     </div>
 
     <script src="/js/main.js"></script>
-    <script src="/js/ads.js"></script>
   </body>
 </html>

@@ -31,38 +31,30 @@
       [data-theme="dark"] .login-card {
         background: var(--color-dark-surface);
       }
-      .login-card__logo {
-        display: flex;
-        align-items: center;
-        gap: var(--space-3);
-        margin-bottom: var(--space-8);
-      }
-      .login-card__logo-icon {
-        width: 44px;
-        height: 44px;
-        background: var(--color-primary);
-        border-radius: var(--radius-xl);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 22px;
-      }
-      .login-card__logo-text {
-        font-family: var(--font-display);
-        font-size: var(--text-xl);
-        color: var(--color-primary);
-        font-weight: var(--weight-semibold);
-      }
       .admin-layout {
         display: none;
+      }
+      .sidebar-user {
+        padding: var(--space-4);
+        margin-bottom: var(--space-4);
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-xl);
+      }
+      .sidebar-user__name {
+        font-weight: var(--weight-semibold);
+        color: var(--color-white);
+        font-size: var(--text-sm);
+      }
+      .sidebar-user__role {
+        font-size: var(--text-xs);
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 2px;
       }
     </style>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Ga naar inhoud</a>
 
-    <!-- Loading Screen -->
     <div
       class="loading-screen"
       id="loadingScreen"
@@ -71,10 +63,9 @@
     >
       <div class="loading-screen__logo">Digitaal<span>School</span></div>
       <div class="loading-screen__spinner" aria-hidden="true"></div>
-      <div class="loading-screen__text">Admin paneel laden…</div>
+      <div class="loading-screen__text">Laden…</div>
     </div>
 
-    <!-- Navbar -->
     <header class="navbar" id="navbar" role="banner">
       <div class="navbar__container">
         <a
@@ -86,20 +77,14 @@
             <span class="material-icons-round">computer</span>
           </div>
           <div class="navbar__logo-text">
-            DigitaalSchool
-            <span>Admin Paneel</span>
+            DigitaalSchool<span>Admin Paneel</span>
           </div>
         </a>
         <nav class="navbar__nav" aria-label="Hoofdnavigatie">
           <a href="/" class="navbar__nav-link">Home</a>
-          <a href="/about.html" class="navbar__nav-link">Over ons</a>
-          <a href="/privacy.html" class="navbar__nav-link">Privacy</a>
-          <a
-            href="/admin.html"
-            class="navbar__nav-link navbar__nav-link--active"
-            aria-current="page"
-            >Admin</a
-          >
+          <a href="/about" class="navbar__nav-link">Over ons</a>
+          <a href="/privacy" class="navbar__nav-link">Privacy</a>
+          <a href="/admin" class="navbar__nav-link">Admin</a>
         </nav>
         <div class="navbar__actions">
           <button
@@ -124,7 +109,6 @@
       </div>
     </header>
 
-    <!-- Mobile menu -->
     <nav
       class="mobile-menu"
       id="mobileMenu"
@@ -136,20 +120,17 @@
           ><span class="material-icons-round" aria-hidden="true">home</span>
           Home</a
         >
-        <a href="/about.html" class="mobile-menu__link"
+        <a href="/about" class="mobile-menu__link"
           ><span class="material-icons-round" aria-hidden="true">group</span>
           Over ons</a
         >
-        <a href="/privacy.html" class="mobile-menu__link"
+        <a href="/privacy" class="mobile-menu__link"
           ><span class="material-icons-round" aria-hidden="true"
             >privacy_tip</span
           >
           Privacy</a
         >
-        <a
-          href="/admin.html"
-          class="mobile-menu__link mobile-menu__link--active"
-          aria-current="page"
+        <a href="/admin" class="mobile-menu__link"
           ><span class="material-icons-round" aria-hidden="true"
             >admin_panel_settings</span
           >
@@ -159,7 +140,7 @@
     </nav>
 
     <main id="main-content">
-      <!-- ══ LOGIN SCHERM ══ -->
+      <!-- ══ LOGIN ══ -->
       <div
         class="admin-login-page"
         id="loginSection"
@@ -167,25 +148,42 @@
         role="main"
         aria-labelledby="login-title"
       >
-        <div class="login-card" role="region" aria-label="Inlogformulier">
-          <div class="login-card__logo">
-            <div class="login-card__logo-icon" aria-hidden="true">
+        <div class="login-card">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: var(--space-3);
+              margin-bottom: var(--space-8);
+            "
+          >
+            <div
+              style="
+                width: 44px;
+                height: 44px;
+                background: var(--color-primary);
+                border-radius: var(--radius-xl);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 22px;
+              "
+              aria-hidden="true"
+            >
               <span class="material-icons-round">admin_panel_settings</span>
             </div>
-            <div class="login-card__logo-text">Admin Paneel</div>
+            <div
+              style="
+                font-family: var(--font-display);
+                font-size: var(--text-xl);
+                color: var(--color-primary);
+                font-weight: var(--weight-semibold);
+              "
+            >
+              Inloggen
+            </div>
           </div>
-
-          <h1
-            style="
-              font-family: var(--font-display);
-              font-size: var(--text-2xl);
-              color: var(--color-primary-dark);
-              margin-bottom: var(--space-2);
-            "
-            id="login-title"
-          >
-            Inloggen
-          </h1>
           <p
             style="
               color: var(--color-on-surface-muted);
@@ -193,14 +191,9 @@
               margin-bottom: var(--space-6);
             "
           >
-            Voer je beheerdersinloggegevens in om door te gaan.
+            Voer je inloggegevens in om door te gaan.
           </p>
-
-          <form
-            onsubmit="handleLogin(event)"
-            novalidate
-            aria-label="Admin inlogformulier"
-          >
+          <form onsubmit="handleLogin(event)" novalidate>
             <div class="form-field">
               <label class="form-label" for="loginUsername"
                 >Gebruikersnaam</label
@@ -209,12 +202,9 @@
                 class="form-input"
                 id="loginUsername"
                 type="text"
-                name="username"
                 autocomplete="username"
-                placeholder="admin"
+                placeholder="admin of persoon1"
                 required
-                aria-required="true"
-                aria-describedby="loginError"
               />
             </div>
             <div class="form-field">
@@ -224,17 +214,16 @@
                   class="form-input"
                   id="loginPassword"
                   type="password"
-                  name="password"
                   autocomplete="current-password"
                   placeholder="••••••••"
                   required
-                  aria-required="true"
-                  aria-describedby="loginError"
                   style="padding-right: var(--space-10)"
                 />
                 <button
                   type="button"
-                  onclick="togglePasswordVisibility()"
+                  onclick="
+                    togglePasswordVisibility('loginPassword', 'passwordEye')
+                  "
                   style="
                     position: absolute;
                     right: var(--space-3);
@@ -243,7 +232,7 @@
                     color: var(--color-on-surface-muted);
                     padding: 0;
                   "
-                  aria-label="Wachtwoord tonen/verbergen"
+                  aria-label="Wachtwoord tonen"
                 >
                   <span
                     class="material-icons-round"
@@ -254,12 +243,10 @@
                 </button>
               </div>
             </div>
-
             <div
               id="loginError"
               class="form-error"
               role="alert"
-              aria-live="polite"
               style="display: none; margin-bottom: var(--space-4)"
             >
               <span
@@ -268,9 +255,7 @@
                 aria-hidden="true"
                 >error</span
               >
-              <span></span>
             </div>
-
             <button
               type="submit"
               class="btn btn--primary"
@@ -279,7 +264,6 @@
                 justify-content: center;
                 padding: var(--space-4);
               "
-              aria-label="Inloggen op het adminpaneel"
             >
               <span class="material-icons-round" aria-hidden="true">login</span>
               <span class="btn__text">Inloggen</span>
@@ -288,85 +272,71 @@
         </div>
       </div>
 
-      <!-- ══ ADMIN DASHBOARD ══ -->
-      <div
-        class="admin-layout"
-        id="adminPanel"
-        style="display: none"
-        aria-label="Adminpaneel"
-      >
+      <!-- ══ ADMIN PANEEL ══ -->
+      <div class="admin-layout" id="adminPanel" style="display: none">
         <!-- Sidebar -->
         <aside
           class="admin-sidebar"
           role="navigation"
           aria-label="Admin navigatie"
         >
-          <div style="margin-bottom: var(--space-6)">
-            <div
-              style="
-                font-size: var(--text-xs);
-                font-weight: var(--weight-bold);
-                text-transform: uppercase;
-                letter-spacing: 0.1em;
-                color: rgba(255, 255, 255, 0.4);
-                margin-bottom: var(--space-3);
-              "
-            >
-              Beheer
-            </div>
-            <nav class="admin-sidebar__nav">
-              <button
-                class="admin-sidebar__link"
-                data-section="dashboard"
-                onclick="navigateTo('dashboard')"
-                aria-label="Ga naar dashboard"
-              >
-                <span class="material-icons-round" aria-hidden="true"
-                  >dashboard</span
-                >
-                Dashboard
-              </button>
-              <button
-                class="admin-sidebar__link"
-                data-section="argumenten"
-                onclick="navigateTo('argumenten')"
-                aria-label="Ga naar argumentenbeheer"
-              >
-                <span class="material-icons-round" aria-hidden="true"
-                  >format_list_bulleted</span
-                >
-                Argumenten
-              </button>
-              <button
-                class="admin-sidebar__link"
-                data-section="gebruikers"
-                onclick="navigateTo('gebruikers')"
-                aria-label="Ga naar gebruikersbeheer"
-              >
-                <span class="material-icons-round" aria-hidden="true"
-                  >group</span
-                >
-                Gebruikers
-              </button>
-              <button
-                class="admin-sidebar__link"
-                data-section="instellingen"
-                onclick="navigateTo('instellingen')"
-                aria-label="Ga naar instellingen"
-              >
-                <span class="material-icons-round" aria-hidden="true"
-                  >settings</span
-                >
-                Instellingen
-              </button>
-            </nav>
+          <div class="sidebar-user">
+            <div class="sidebar-user__name" id="sidebarUserName">Laden…</div>
+            <div class="sidebar-user__role" id="sidebarUserRole"></div>
           </div>
-          <div style="margin-top: auto">
+          <div
+            style="
+              font-size: var(--text-xs);
+              font-weight: var(--weight-bold);
+              text-transform: uppercase;
+              letter-spacing: 0.1em;
+              color: rgba(255, 255, 255, 0.4);
+              margin-bottom: var(--space-3);
+            "
+          >
+            Menu
+          </div>
+          <nav class="admin-sidebar__nav">
             <button
               class="admin-sidebar__link"
-              onclick="handleLogout()"
-              aria-label="Uitloggen"
+              data-section="dashboard"
+              onclick="navigateTo('dashboard')"
             >
+              <span class="material-icons-round" aria-hidden="true"
+                >dashboard</span
+              >
+              Dashboard
+            </button>
+            <button
+              class="admin-sidebar__link"
+              data-section="betoog"
+              onclick="navigateTo('betoog')"
+            >
+              <span class="material-icons-round" aria-hidden="true"
+                >article</span
+              >
+              Betoog bewerken
+            </button>
+            <button
+              class="admin-sidebar__link"
+              data-section="gebruikers"
+              onclick="navigateTo('gebruikers')"
+              data-admin-only
+            >
+              <span class="material-icons-round" aria-hidden="true">group</span>
+              Gebruikers
+            </button>
+            <button
+              class="admin-sidebar__link"
+              data-section="wachtwoord"
+              onclick="navigateTo('wachtwoord')"
+            >
+              <span class="material-icons-round" aria-hidden="true">lock</span>
+              Wachtwoord
+            </button>
+          </nav>
+          <div style="margin-top: var(--space-6)">
+            <button class="admin-sidebar__link" onclick="handleLogout()">
               <span class="material-icons-round" aria-hidden="true"
                 >logout</span
               >
@@ -375,55 +345,33 @@
           </div>
         </aside>
 
-        <!-- Main area -->
+        <!-- Main -->
         <div class="admin-main">
-          <!-- ── Dashboard sectie ── -->
+          <!-- ── Dashboard ── -->
           <div class="admin-content-section" id="section-dashboard">
             <div class="admin-header">
               <h1 class="admin-header__title">Dashboard</h1>
               <p class="admin-header__subtitle">
-                Welkom terug! Hier is een overzicht van de website.
+                Welkom terug! Hier is een overzicht.
               </p>
             </div>
-
             <div class="grid grid--4" style="margin-bottom: var(--space-8)">
-              <div class="stat-card">
-                <div class="stat-card__icon" aria-hidden="true">
-                  <span class="material-icons-round">format_list_bulleted</span>
-                </div>
-                <div>
-                  <div
-                    class="stat-card__value"
-                    id="dashCountArgs"
-                    aria-label="Aantal argumenten"
-                  >
-                    3
-                  </div>
-                  <div class="stat-card__label">Argumenten</div>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-card__icon" aria-hidden="true">
-                  <span class="material-icons-round">group</span>
-                </div>
-                <div>
-                  <div
-                    class="stat-card__value"
-                    id="dashCountUsers"
-                    aria-label="Aantal gebruikers"
-                  >
-                    3
-                  </div>
-                  <div class="stat-card__label">Gebruikers</div>
-                </div>
-              </div>
               <div class="stat-card">
                 <div class="stat-card__icon" aria-hidden="true">
                   <span class="material-icons-round">article</span>
                 </div>
                 <div>
-                  <div class="stat-card__value">6</div>
+                  <div class="stat-card__value" id="dashCountSections">8</div>
                   <div class="stat-card__label">Secties betoog</div>
+                </div>
+              </div>
+              <div class="stat-card" data-admin-only>
+                <div class="stat-card__icon" aria-hidden="true">
+                  <span class="material-icons-round">group</span>
+                </div>
+                <div>
+                  <div class="stat-card__value" id="dashCountUsers">—</div>
+                  <div class="stat-card__label">Gebruikers</div>
                 </div>
               </div>
               <div class="stat-card">
@@ -444,8 +392,24 @@
 
             <div class="grid grid--2" style="align-items: start">
               <div class="card card--featured">
+                <div class="card__eyebrow">Jouw secties</div>
+                <h2 class="card__title">Wat kan jij bewerken?</h2>
+                <div
+                  id="mySectionsList"
+                  style="
+                    margin-top: var(--space-4);
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--space-2);
+                  "
+                >
+                  <div class="skeleton skeleton--text"></div>
+                  <div class="skeleton skeleton--text"></div>
+                </div>
+              </div>
+              <div class="card card--elevated">
                 <div class="card__eyebrow">Snelle acties</div>
-                <h2 class="card__title">Wat wil je doen?</h2>
+                <h2 class="card__title">Navigeer naar</h2>
                 <div
                   style="
                     display: flex;
@@ -456,30 +420,18 @@
                 >
                   <button
                     class="btn btn--primary"
-                    onclick="navigateTo('argumenten')"
-                    aria-label="Ga naar argumentenbeheer"
+                    onclick="navigateTo('betoog')"
                   >
                     <span class="material-icons-round" aria-hidden="true"
                       >edit</span
                     >
-                    Argumenten bewerken
-                  </button>
-                  <button
-                    class="btn btn--secondary"
-                    onclick="navigateTo('gebruikers')"
-                    aria-label="Ga naar gebruikersbeheer"
-                  >
-                    <span class="material-icons-round" aria-hidden="true"
-                      >manage_accounts</span
-                    >
-                    Gebruikers beheren
+                    Betoog bewerken
                   </button>
                   <a
                     href="/"
                     class="btn btn--ghost"
                     target="_blank"
                     rel="noopener"
-                    aria-label="Open de website in een nieuw tabblad"
                   >
                     <span class="material-icons-round" aria-hidden="true"
                       >open_in_new</span
@@ -488,135 +440,23 @@
                   </a>
                 </div>
               </div>
-              <div class="card card--elevated">
-                <div class="card__eyebrow">Sectieverdeling</div>
-                <h2 class="card__title">Wie doet wat?</h2>
-                <div
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--space-3);
-                    margin-top: var(--space-4);
-                  "
-                >
-                  <div
-                    style="
-                      display: flex;
-                      justify-content: space-between;
-                      align-items: center;
-                      padding: var(--space-3);
-                      background: var(--color-primary-surface);
-                      border-radius: var(--radius-lg);
-                    "
-                  >
-                    <span
-                      style="
-                        font-size: var(--text-sm);
-                        font-weight: var(--weight-medium);
-                      "
-                      >Persoon 1</span
-                    >
-                    <span class="badge badge--primary"
-                      >Inleiding & Stelling</span
-                    >
-                  </div>
-                  <div
-                    style="
-                      display: flex;
-                      justify-content: space-between;
-                      align-items: center;
-                      padding: var(--space-3);
-                      background: var(--color-primary-surface);
-                      border-radius: var(--radius-lg);
-                    "
-                  >
-                    <span
-                      style="
-                        font-size: var(--text-sm);
-                        font-weight: var(--weight-medium);
-                      "
-                      >Persoon 2</span
-                    >
-                    <span class="badge badge--primary">Argumenten</span>
-                  </div>
-                  <div
-                    style="
-                      display: flex;
-                      justify-content: space-between;
-                      align-items: center;
-                      padding: var(--space-3);
-                      background: var(--color-primary-surface);
-                      border-radius: var(--radius-lg);
-                    "
-                  >
-                    <span
-                      style="
-                        font-size: var(--text-sm);
-                        font-weight: var(--weight-medium);
-                      "
-                      >Persoon 3</span
-                    >
-                    <span class="badge badge--primary"
-                      >Conclusie & Weerlegging</span
-                    >
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
-          <!-- ── Argumenten sectie ── -->
+          <!-- ── Betoog bewerken ── -->
           <div
             class="admin-content-section"
-            id="section-argumenten"
+            id="section-betoog"
             style="display: none"
           >
-            <div
-              class="admin-header"
-              style="
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                flex-wrap: wrap;
-                gap: var(--space-4);
-              "
-            >
-              <div>
-                <h1 class="admin-header__title">Argumenten beheren</h1>
-                <p class="admin-header__subtitle">
-                  Bewerk de argumenten die op de homepage worden getoond.
-                </p>
-              </div>
-              <div style="display: flex; gap: var(--space-3)">
-                <button
-                  class="btn btn--secondary"
-                  onclick="addArgument()"
-                  aria-label="Nieuw argument toevoegen"
-                >
-                  <span class="material-icons-round" aria-hidden="true"
-                    >add</span
-                  >
-                  Toevoegen
-                </button>
-                <button
-                  class="btn btn--primary"
-                  id="saveArgsBtn"
-                  onclick="saveArguments()"
-                  aria-label="Argumenten opslaan"
-                >
-                  <span class="material-icons-round" aria-hidden="true"
-                    >save</span
-                  >
-                  <span class="btn__text">Opslaan</span>
-                </button>
-              </div>
+            <div class="admin-header">
+              <h1 class="admin-header__title">Betoog bewerken</h1>
+              <p class="admin-header__subtitle">
+                Klik op het potlood-icoon om een sectie te bewerken. Je kunt
+                alleen jouw eigen secties aanpassen.
+              </p>
             </div>
-            <div
-              id="argumentsList"
-              aria-live="polite"
-              aria-label="Lijst van argumenten"
-            >
-              <!-- Dynamisch gevuld door admin.js -->
+            <div id="betoogSectionsList" aria-live="polite">
               <div
                 class="skeleton skeleton--card"
                 style="margin-bottom: var(--space-4)"
@@ -630,7 +470,7 @@
             </div>
           </div>
 
-          <!-- ── Gebruikers sectie ── -->
+          <!-- ── Gebruikers (admin only) ── -->
           <div
             class="admin-content-section"
             id="section-gebruikers"
@@ -649,160 +489,111 @@
               <div>
                 <h1 class="admin-header__title">Gebruikers beheren</h1>
                 <p class="admin-header__subtitle">
-                  Wijs personen toe aan onderdelen van het betoog.
+                  Beheer teamleden en hun toegang.
                 </p>
               </div>
-              <button
-                class="btn btn--primary"
-                id="saveUsersBtn"
-                onclick="saveUsers()"
-                aria-label="Gebruikers opslaan"
-              >
+              <button class="btn btn--primary" onclick="openAddUserModal()">
                 <span class="material-icons-round" aria-hidden="true"
-                  >save</span
+                  >person_add</span
                 >
-                <span class="btn__text">Opslaan</span>
+                Toevoegen
               </button>
             </div>
-            <div class="data-table__wrapper" aria-label="Gebruikerstabel">
-              <table
-                class="data-table"
-                role="table"
-                aria-label="Overzicht van gebruikers en secties"
-              >
+            <div class="data-table__wrapper">
+              <table class="data-table" role="table" aria-label="Gebruikers">
                 <thead>
                   <tr>
                     <th scope="col">Naam</th>
-                    <th scope="col">E-mailadres</th>
-                    <th scope="col">Sectie toewijzen</th>
-                    <th scope="col">Huidige sectie</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Sectie</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Acties</th>
                   </tr>
                 </thead>
-                <tbody id="usersTableBody" aria-live="polite">
-                  <!-- Dynamisch gevuld door admin.js -->
-                </tbody>
+                <tbody id="usersTableBody" aria-live="polite"></tbody>
               </table>
             </div>
           </div>
 
-          <!-- ── Instellingen sectie ── -->
+          <!-- ── Wachtwoord ── -->
           <div
             class="admin-content-section"
-            id="section-instellingen"
+            id="section-wachtwoord"
             style="display: none"
           >
             <div class="admin-header">
-              <h1 class="admin-header__title">Instellingen</h1>
+              <h1 class="admin-header__title">Wachtwoord wijzigen</h1>
               <p class="admin-header__subtitle">
-                Beheer de website-instellingen.
+                Verander je eigen wachtwoord.
               </p>
             </div>
-            <div class="grid grid--2" style="align-items: start">
-              <div class="card card--elevated">
-                <div class="card__icon" aria-hidden="true">
-                  <span class="material-icons-round">account_circle</span>
-                </div>
-                <div class="card__eyebrow">Account</div>
-                <h2 class="card__title">Inloggegevens</h2>
-                <p class="card__text" style="margin-bottom: var(--space-4)">
-                  De inloggegevens worden beheerd via het
-                  <code>.env</code> bestand op de server. Wijzig daar
-                  <code>ADMIN_USER</code> en <code>ADMIN_PASS</code>.
-                </p>
-                <div
-                  style="
-                    background: var(--color-surface-2);
-                    border-radius: var(--radius-lg);
-                    padding: var(--space-4);
-                    font-family: var(--font-mono);
-                    font-size: var(--text-sm);
-                  "
-                >
-                  <div style="color: var(--color-on-surface-muted)">
-                    ADMIN_USER=admin
-                  </div>
-                  <div style="color: var(--color-on-surface-muted)">
-                    ADMIN_PASS=geheim123
-                  </div>
-                </div>
+            <div class="card card--featured" style="max-width: 480px">
+              <div class="card__icon" aria-hidden="true">
+                <span class="material-icons-round">lock</span>
               </div>
-              <div class="card card--elevated">
-                <div class="card__icon" aria-hidden="true">
-                  <span class="material-icons-round">storage</span>
-                </div>
-                <div class="card__eyebrow">Database</div>
-                <h2 class="card__title">JSON bestanden</h2>
-                <p class="card__text" style="margin-bottom: var(--space-4)">
-                  Data wordt opgeslagen in JSON-bestanden in de
-                  <code>public/data/</code> map.
-                </p>
-                <div
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--space-2);
-                  "
-                >
-                  <div
-                    style="
-                      display: flex;
-                      justify-content: space-between;
-                      align-items: center;
-                      font-size: var(--text-sm);
-                    "
-                  >
-                    <span style="color: var(--color-on-surface-muted)"
-                      >arguments.json</span
-                    >
-                    <span class="badge badge--success">Actief</span>
-                  </div>
-                  <div
-                    style="
-                      display: flex;
-                      justify-content: space-between;
-                      align-items: center;
-                      font-size: var(--text-sm);
-                    "
-                  >
-                    <span style="color: var(--color-on-surface-muted)"
-                      >users.json</span
-                    >
-                    <span class="badge badge--success">Actief</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="card card--elevated" style="margin-top: var(--space-6)">
-              <div
-                class="card__icon"
-                style="
-                  background: var(--color-error-light);
-                  color: var(--color-error);
-                "
-                aria-hidden="true"
+              <h2 class="card__title">Nieuw wachtwoord instellen</h2>
+              <form
+                onsubmit="changePassword(event)"
+                novalidate
+                style="margin-top: var(--space-5)"
               >
-                <span class="material-icons-round">logout</span>
-              </div>
-              <div class="card__eyebrow">Sessie</div>
-              <h2 class="card__title">Uitloggen</h2>
-              <p class="card__text" style="margin-bottom: var(--space-5)">
-                Sluit je sessie af en keer terug naar het inlogscherm.
-              </p>
-              <button
-                class="btn btn--secondary"
-                onclick="handleLogout()"
-                style="
-                  color: var(--color-error);
-                  border-color: var(--color-error);
-                "
-                aria-label="Uitloggen van het adminpaneel"
-              >
-                <span class="material-icons-round" aria-hidden="true"
-                  >logout</span
+                <div class="form-field">
+                  <label class="form-label" for="currentPassword"
+                    >Huidig wachtwoord</label
+                  >
+                  <input
+                    class="form-input"
+                    id="currentPassword"
+                    type="password"
+                    autocomplete="current-password"
+                    required
+                  />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="newPassword"
+                    >Nieuw wachtwoord</label
+                  >
+                  <input
+                    class="form-input"
+                    id="newPassword"
+                    type="password"
+                    autocomplete="new-password"
+                    required
+                    minlength="6"
+                  />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="newPasswordConfirm"
+                    >Herhaal nieuw wachtwoord</label
+                  >
+                  <input
+                    class="form-input"
+                    id="newPasswordConfirm"
+                    type="password"
+                    autocomplete="new-password"
+                    required
+                  />
+                </div>
+                <div
+                  id="passwordError"
+                  class="form-error"
+                  role="alert"
+                  style="display: none; margin-bottom: var(--space-4)"
                 >
-                Uitloggen
-              </button>
+                  <span
+                    class="material-icons-round"
+                    style="font-size: 16px"
+                    aria-hidden="true"
+                    >error</span
+                  >
+                </div>
+                <button type="submit" class="btn btn--primary">
+                  <span class="material-icons-round" aria-hidden="true"
+                    >save</span
+                  >
+                  Wachtwoord wijzigen
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -811,7 +602,205 @@
       <!-- /adminPanel -->
     </main>
 
-    <!-- Snackbar container -->
+    <!-- ══ MODAL: Gebruiker bewerken ══ -->
+    <div
+      class="modal-overlay"
+      id="userEditModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="editUserModalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal" style="max-width: 520px">
+        <div class="modal__header">
+          <h2 class="modal__title" id="editUserModalTitle">
+            Gebruiker bewerken
+          </h2>
+          <button
+            class="modal__close"
+            onclick="closeUserEditModal()"
+            aria-label="Sluiten"
+          >
+            <span class="material-icons-round" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="modal__body">
+          <input type="hidden" id="editUserId" />
+          <div class="form-field">
+            <label class="form-label" for="editUserName">Naam</label>
+            <input class="form-input" id="editUserName" type="text" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="editUserUsername"
+              >Gebruikersnaam</label
+            >
+            <input
+              class="form-input"
+              id="editUserUsername"
+              type="text"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="editUserEmail">E-mailadres</label>
+            <input class="form-input" id="editUserEmail" type="email" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="editUserSection">Sectie</label>
+            <select class="form-input" id="editUserSection">
+              <option value="Inleiding &amp; Stelling">
+                Inleiding &amp; Stelling
+              </option>
+              <option value="Argumenten">Argumenten</option>
+              <option value="Conclusie &amp; Weerlegging">
+                Conclusie &amp; Weerlegging
+              </option>
+              <option value="Alle secties">Alle secties</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="editUserRole">Rol</label>
+            <select class="form-input" id="editUserRole">
+              <option value="member">Teamlid</option>
+              <option value="admin">Beheerder</option>
+            </select>
+          </div>
+          <div class="form-field" style="margin-bottom: 0">
+            <label class="form-label" for="editUserPassword"
+              >Nieuw wachtwoord
+              <span
+                style="
+                  font-weight: normal;
+                  color: var(--color-on-surface-muted);
+                "
+                >(leeg = ongewijzigd)</span
+              ></label
+            >
+            <input
+              class="form-input"
+              id="editUserPassword"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Leeg laten om niet te wijzigen"
+            />
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--ghost" onclick="closeUserEditModal()">
+            Annuleren
+          </button>
+          <button class="btn btn--primary" onclick="saveUserEdit()">
+            <span class="material-icons-round" aria-hidden="true">save</span>
+            Opslaan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MODAL: Gebruiker toevoegen ══ -->
+    <div
+      class="modal-overlay"
+      id="userAddModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="addUserModalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal" style="max-width: 520px">
+        <div class="modal__header">
+          <h2 class="modal__title" id="addUserModalTitle">
+            Nieuw teamlid toevoegen
+          </h2>
+          <button
+            class="modal__close"
+            onclick="closeAddUserModal()"
+            aria-label="Sluiten"
+          >
+            <span class="material-icons-round" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div class="form-field">
+            <label class="form-label" for="addUserName"
+              >Naam <span style="color: var(--color-error)">*</span></label
+            >
+            <input
+              class="form-input"
+              id="addUserName"
+              type="text"
+              placeholder="Persoon 4"
+            />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="addUserUsername"
+              >Gebruikersnaam
+              <span style="color: var(--color-error)">*</span></label
+            >
+            <input
+              class="form-input"
+              id="addUserUsername"
+              type="text"
+              autocomplete="off"
+              placeholder="persoon4"
+            />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="addUserEmail">E-mailadres</label>
+            <input
+              class="form-input"
+              id="addUserEmail"
+              type="email"
+              placeholder="persoon4@school.nl"
+            />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="addUserSection">Sectie</label>
+            <select class="form-input" id="addUserSection">
+              <option value="Inleiding &amp; Stelling">
+                Inleiding &amp; Stelling
+              </option>
+              <option value="Argumenten">Argumenten</option>
+              <option value="Conclusie &amp; Weerlegging">
+                Conclusie &amp; Weerlegging
+              </option>
+              <option value="Alle secties">Alle secties</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="addUserRole">Rol</label>
+            <select class="form-input" id="addUserRole">
+              <option value="member">Teamlid</option>
+              <option value="admin">Beheerder</option>
+            </select>
+          </div>
+          <div class="form-field" style="margin-bottom: 0">
+            <label class="form-label" for="addUserPassword"
+              >Wachtwoord
+              <span style="color: var(--color-error)">*</span></label
+            >
+            <input
+              class="form-input"
+              id="addUserPassword"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Minimaal 6 tekens"
+            />
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--ghost" onclick="closeAddUserModal()">
+            Annuleren
+          </button>
+          <button class="btn btn--primary" onclick="saveNewUser()">
+            <span class="material-icons-round" aria-hidden="true"
+              >person_add</span
+            >
+            Toevoegen
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div
       class="snackbar-container"
       id="snackbarContainer"
@@ -821,20 +810,5 @@
 
     <script src="/js/main.js"></script>
     <script src="/js/admin.js"></script>
-    <script>
-      // Wachtwoord tonen/verbergen
-      window.togglePasswordVisibility = function () {
-        const input = document.getElementById("loginPassword");
-        const eye = document.getElementById("passwordEye");
-        if (!input || !eye) return;
-        if (input.type === "password") {
-          input.type = "text";
-          eye.textContent = "visibility_off";
-        } else {
-          input.type = "password";
-          eye.textContent = "visibility";
-        }
-      };
-    </script>
   </body>
 </html>
