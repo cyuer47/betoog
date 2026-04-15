@@ -1127,6 +1127,14 @@ select {
   font-weight: 900;
 }
 
+.conclusie-card p {
+  color: rgba(181, 199, 206, 0.95);
+}
+
+.conclusie-card h3 {
+  color: var(--color-white);
+}
+
 /* ── Knoppen ── */
 .btn {
   display: inline-flex;
